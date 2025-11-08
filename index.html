@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua Chacko George - Professional Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Video -->
+    <video id="bg-video" autoplay loop muted playsinline poster="" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -1; pointer-events: none;">
+        <source src="4K Soft Gradient Mood Lights (online-video-cutter.com).mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="signature.png" alt="Signature" class="signature-animate" /></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li class="dropdown">
+                    <a href="experience.html" class="nav-link dropdown-toggle">Experience <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="experience.html#skills" class="dropdown-item">Skills</a></li>
+                        <li><a href="experience.html#certifications" class="dropdown-item">Certifications</a></li>
+                        <li><a href="experience.html#extracurricular" class="dropdown-item">Extra Curricular</a></li>
+                    </ul>
+                </li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Hi, I'm Joshua Chacko George</h1>
+                    <h2>IoT Architect, Cybersecurity & Ethical Hacking Expert, and Full-Stack Web Developer</h2>
+                    <p>Passionate about creating innovative solutions and driving digital transformation through technology.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="#about" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="profile pic.jpeg" alt="Joshua Chacko George" class="profile-animate">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a dedicated IoT Architect, Cybersecurity & Ethical Hacking Expert, and Full-Stack Web Developer with a passion for technology and innovation. With experience in developing scalable applications and driving digital transformation, I specialize in creating efficient, user-centric solutions that solve real-world problems.</p>
+                    <p>My journey in technology has been driven by curiosity and a desire to make a meaningful impact. I believe in continuous learning and staying updated with the latest industry trends and technologies.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>3+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h3>20+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p>Technologies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Internship Timeline Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education & Internship</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Bachelor of Technology in Computer Science (Honours in Cybersecurity)</h3>
+                        <h4>Christ (Deemed to be University)</h4>
+                        <p class="timeline-date">2023 - Current</p>
+                        <ul>
+                            <li>Pursuing Honours in Cybersecurity</li>
+                            <li>Active member of the Coding Club</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Cyber Security Analyst Intern</h3>
+                        <h4>Ad Infocom Systems, Nagpur</h4>
+                        <p class="timeline-date">April 2025 - May 2025</p>
+                        <ul>
+                            <li>Worked on real-world cybersecurity projects and risk assessments</li>
+                            <li>Collaborated with senior analysts to enhance system security</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Highlighted Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="obrs.png" alt="Online Bus Reservation System">
+                    </div>
+                    <div class="project-info">
+                        <h3>Online Bus Reservation System <span class="special-mention">(Special Mention)</span></h3>
+                        <p>Developed a full-stack web application for booking and managing bus reservations, featuring real-time seat selection and secure payment integration.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="car racing.jpeg" alt="Car Racing Game">
+                    </div>
+                    <div class="project-info">
+                        <h3>Car Racing Game</h3>
+                        <p>Designed and implemented a 2D car racing game with dynamic obstacles, scoring, and smooth controls using modern game development frameworks.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>joshuapalathinkalxx3@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h3>LinkedIn</h3>
+                            <p><a href="https://www.linkedin.com/in/joshua-chacko-george-736123289/" target="_blank">Joshua Chacko George</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <div>
+                            <h3>GitHub</h3>
+                            <p><a href="https://github.com/JoshuaMac003" target="_blank">JoshuaMac003</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Joshua Chacko George. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/joshua-chacko-george-736123289/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -794,6 +794,52 @@ section#skills.skills {
     margin-bottom: 0.5rem;
 }
 
+.project-info h3 a {
+    color: black !important;
+    text-decoration: none;
+}
+
+.project-info h3 a:hover {
+    text-decoration: underline;
+}
+
+/* Contact form feedback modal */
+.message-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.message-modal.active {
+    display: flex;
+}
+
+.message-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.message-modal-content {
+    position: relative;
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+    max-width: 420px;
+    margin: 0 1.5rem;
+    text-align: center;
+}
+
+#message-modal-text {
+    margin-bottom: 1.5rem;
+    color: black !important;
+    font-size: 1rem;
+}
+
 .special-mention {
     color: black !important;
     font-weight: 700;

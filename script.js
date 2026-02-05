@@ -197,15 +197,47 @@ if (contactForm) {
             return;
         }
 
-        // Build mailto link to send email via user's email client
+        // Build Gmail compose link so the user just clicks "Send"
         const recipient = 'joshuapalathinkalxx3@gmail.com';
         const mailSubject = `${subject} - from ${name}`;
         const mailBody = `Name: ${name}\nEmail: ${email}\n\n${message}`;
 
-        const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
-        // Trigger email client
-        window.location.href = mailtoLink;
+        // Open Gmail compose window in a new tab
+        const gmailWindow = window.open(gmailUrl, '_blank');
+
+        // Show feedback modal based on whether the window opened (popup blockers, etc.)
+        const modal = document.getElementById('message-modal');
+        const modalText = document.getElementById('message-modal-text');
+
+        if (!modal || !modalText) {
+            // Fallback to alert if modal elements are missing
+            if (!gmailWindow) {
+                alert('Submission failed. Please retry in a moment.');
+            } else {
+                alert('Message sent successfully. Thank you for contacting me.');
+            }
+            return;
+        }
+
+        if (!gmailWindow) {
+            modalText.textContent = 'Submission failed. Please retry in a moment.';
+        } else {
+            modalText.textContent = 'Message sent successfully. Thank you for contacting me.';
+            // Clear the contact form fields after opening Gmail compose
+            this.reset();
+        }
+        modal.classList.add('active');
+    });
+}
+
+// Modal close handler
+const messageModal = document.getElementById('message-modal');
+const messageModalClose = document.getElementById('message-modal-close');
+if (messageModal && messageModalClose) {
+    messageModalClose.addEventListener('click', () => {
+        messageModal.classList.remove('active');
     });
 }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html"><img src="signature.png" alt="Signature" class="signature-animate" /></a>
+                <a href="index.html" class="nav-logo-text">Joshua Palathinkal</a>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
@@ -27,9 +27,8 @@
                 <li class="dropdown">
                     <a href="experience.html" class="nav-link dropdown-toggle">Experience <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="experience.html#skills" class="dropdown-item">Skills</a></li>
-                        <li><a href="experience.html#certifications" class="dropdown-item">Certifications</a></li>
-                        <li><a href="experience.html#extracurricular" class="dropdown-item">Extra Curricular</a></li>
+                        <li><a href="experience.html#skills" class="dropdown-item">Skills and Technologies</a></li>
+                        <li><a href="experience.html#certifications" class="dropdown-item">Other Certification and Achievements</a></li>
                     </ul>
                 </li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -45,6 +44,8 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-blueprint"></div>
+        <div class="hero-blueprint-highlight"></div>
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
@@ -124,14 +125,14 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Highlighted Projects</h2>
+            <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
                         <img src="obrs.png" alt="Online Bus Reservation System">
                     </div>
                     <div class="project-info">
-                        <h3>Online Bus Reservation System <span class="special-mention">(Special Mention)</span></h3>
+                        <h3>Online Bus Reservation System</h3>
                         <p>Developed a full-stack web application for booking and managing bus reservations, featuring real-time seat selection and secure payment integration.</p>
                     </div>
                 </div>
@@ -144,7 +145,48 @@
                         <p>Designed and implemented a 2D car racing game with dynamic obstacles, scoring, and smooth controls using modern game development frameworks.</p>
                     </div>
                 </div>
-
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Zero-Trust AI Email Firewall</h3>
+                        <p>Built an AI-driven email security layer that applies zero-trust principles to detect phishing, malicious links, and anomalous sender behavior before messages reach the inbox.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Voice Monitoring and Activity Classification System</h3>
+                        <p>Designed an audio analytics pipeline that continuously monitors ambient sound, extracts features, and classifies activities in real time for safety and automation use cases.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Voice Biometrics with Emotion Detection</h3>
+                        <p>Implemented a voice-based authentication and emotion recognition system that combines speaker identification with sentiment analysis for secure, human-aware interfaces.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Health Monitor</h3>
+                        <p>Created a health monitoring dashboard that aggregates sensor and wearable data to track vitals, visualize trends, and surface early warning signals for anomalies.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Password Strength Tester</h3>
+                        <p>Developed a responsive web tool that evaluates password entropy in real time, highlights weaknesses, and educates users on building stronger credentials.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Theft Detection System</h3>
+                        <p>Engineered an embedded security solution that fuses sensor inputs and rule-based logic to detect unauthorized movement and trigger instant alerts.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>NeuroShield Brainwave-Pattern Authentication &amp; Cognitive Intrusion Detection</h3>
+                        <p>Explored biometric security using EEG-style signals by modeling brainwave patterns for authentication and detecting abnormal cognitive states that may indicate coercion or intrusion.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -197,19 +239,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2024 Joshua Chacko George. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/joshua-chacko-george-736123289/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 </body>

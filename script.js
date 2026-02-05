@@ -179,7 +179,6 @@ if (contactForm) {
         e.preventDefault();
         
         // Get form data
-        const formData = new FormData(this);
         const name = this.querySelector('input[type="text"]').value;
         const email = this.querySelector('input[type="email"]').value;
         const subject = this.querySelector('input[placeholder="Subject"]').value;
@@ -197,20 +196,16 @@ if (contactForm) {
             alert('Please enter a valid email address');
             return;
         }
-        
-        // Simulate form submission
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-        
-        // Simulate API call
-        setTimeout(() => {
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
+
+        // Build mailto link to send email via user's email client
+        const recipient = 'joshuapalathinkalxx3@gmail.com';
+        const mailSubject = `${subject} - from ${name}`;
+        const mailBody = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+
+        const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+
+        // Trigger email client
+        window.location.href = mailtoLink;
     });
 }
 
@@ -395,3 +390,17 @@ const statsObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.stat').forEach(stat => {
     statsObserver.observe(stat);
 }); 
+
+// Hero blueprint cursor-follow effect
+document.addEventListener('DOMContentLoaded', () => {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        hero.style.setProperty('--cursor-x', `${x}%`);
+        hero.style.setProperty('--cursor-y', `${y}%`);
+    });
+});

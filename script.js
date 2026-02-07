@@ -172,63 +172,74 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Form submission handling
+// Form submission handling – sends directly to your email via Formspree (no redirect)
+const FORMSPREE_FORM_ID = 'YOUR_FORMSPREE_FORM_ID'; // Replace with your form ID from https://formspree.io (sign up with joshuapalathinkalxx3@gmail.com)
 const contactForm = document.querySelector('.contact-form form');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        // Get form data
-        const name = this.querySelector('input[type="text"]').value;
-        const email = this.querySelector('input[type="email"]').value;
-        const subject = this.querySelector('input[placeholder="Subject"]').value;
-        const message = this.querySelector('textarea').value;
-        
-        // Simple validation
+
+        const name = this.querySelector('input[name="name"]').value.trim();
+        const email = this.querySelector('input[name="email"]').value.trim();
+        const subject = this.querySelector('input[name="subject"]').value.trim();
+        const message = this.querySelector('textarea[name="message"]').value.trim();
+
         if (!name || !email || !subject || !message) {
             alert('Please fill in all fields');
             return;
         }
-        
-        // Email validation
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             alert('Please enter a valid email address');
             return;
         }
 
-        // Build Gmail compose link so the user just clicks "Send"
-        const recipient = 'joshuapalathinkalxx3@gmail.com';
-        const mailSubject = `${subject} - from ${name}`;
-        const mailBody = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
-
-        // Open Gmail compose window in a new tab
-        const gmailWindow = window.open(gmailUrl, '_blank');
-
-        // Show feedback modal based on whether the window opened (popup blockers, etc.)
         const modal = document.getElementById('message-modal');
         const modalText = document.getElementById('message-modal-text');
+        const submitBtn = document.getElementById('contact-submit-btn');
 
-        if (!modal || !modalText) {
-            // Fallback to alert if modal elements are missing
-            if (!gmailWindow) {
-                alert('Submission failed. Please retry in a moment.');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+        }
+
+        try {
+            const res = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, subject, message, _replyto: email })
+            });
+
+            if (modal && modalText) {
+                if (res.ok) {
+                    modalText.textContent = 'Message sent successfully. Thank you for contacting me.';
+                    this.reset();
+                } else {
+                    modalText.textContent = 'Submission failed. Please retry in a moment.';
+                }
+                modal.classList.add('active');
             } else {
-                alert('Message sent successfully. Thank you for contacting me.');
+                if (res.ok) {
+                    alert('Message sent successfully. Thank you for contacting me.');
+                    this.reset();
+                } else {
+                    alert('Submission failed. Please retry in a moment.');
+                }
             }
-            return;
+        } catch (err) {
+            if (modal && modalText) {
+                modalText.textContent = 'Submission failed. Please retry in a moment.';
+                modal.classList.add('active');
+            } else {
+                alert('Submission failed. Please retry in a moment.');
+            }
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
         }
-
-        if (!gmailWindow) {
-            modalText.textContent = 'Submission failed. Please retry in a moment.';
-        } else {
-            modalText.textContent = 'Message sent successfully. Thank you for contacting me.';
-            // Clear the contact form fields after opening Gmail compose
-            this.reset();
-        }
-        modal.classList.add('active');
     });
 }
 

@@ -1,9 +1,14 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joshua Chacko George - Professional Portfolio</title>
+    <title>Joshua Chacko George — IoT Specialist | Cybersecurity & AI/ML | Full-Stack Engineer</title>
+    <meta name="description" content="Portfolio of Joshua Chacko George — IoT Specialist, Honours in Cybersecurity & Ethical Hacking, Cybersecurity & AI/ML, Full-Stack Engineering, and DevOps & Cloud Technologies.">
+    <meta name="author" content="Joshua Chacko George">
+    <meta property="og:title" content="Joshua Chacko George — Portfolio">
+    <meta property="og:description" content="IoT Specialist | Honours in Cybersecurity & Ethical Hacking | Cybersecurity & AI/ML | Full-Stack Engineering | DevOps & Cloud Technologies">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -15,42 +20,42 @@
         Your browser does not support the video tag.
     </video>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html" class="nav-logo-text">Joshua Palathinkal</a>
+                <a href="index.html" class="nav-logo-text" aria-label="Joshua Chacko George — Home">Joshua Chacko George</a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li class="dropdown">
-                    <a href="experience.html" class="nav-link dropdown-toggle">Experience <i class="fas fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="experience.html#skills" class="dropdown-item">Skills and Technologies</a></li>
-                        <li><a href="experience.html#certifications" class="dropdown-item">Other Certification and Achievements</a></li>
+            <ul class="nav-menu" id="nav-menu" role="menubar">
+                <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+                <li role="none"><a href="#education" class="nav-link" role="menuitem">Education</a></li>
+                <li class="dropdown" role="none" id="exp-dropdown">
+                    <a href="experience.html" class="nav-link dropdown-toggle" role="menuitem" aria-haspopup="true" aria-expanded="false" id="exp-dropdown-toggle">Experience <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu" role="menu" aria-label="Experience submenu">
+                        <li role="none"><a href="experience.html#skills" class="dropdown-item" role="menuitem">Skills and Technologies</a></li>
+                        <li role="none"><a href="experience.html#certifications" class="dropdown-item" role="menuitem">Other Certification and Achievements</a></li>
                     </ul>
                 </li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
+                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle mobile navigation menu" aria-expanded="false" aria-controls="nav-menu" type="button">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-blueprint"></div>
-        <div class="hero-blueprint-highlight"></div>
+    <section id="home" class="hero" aria-label="Introduction">
+        <div class="hero-blueprint" aria-hidden="true"></div>
+        <div class="hero-blueprint-highlight" aria-hidden="true"></div>
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Hi, I'm Joshua Chacko George</h1>
-                    <h2>IoT Architect, Cybersecurity & Ethical Hacking Expert, and Full-Stack Web Developer</h2>
+                    <h2>IoT Specialist | Honours in Cybersecurity &amp; Ethical Hacking | Cybersecurity &amp; AI/ML | Full-Stack Engineering | DevOps &amp; Cloud Technologies</h2>
                     <p>Passionate about creating innovative solutions and driving digital transformation through technology.</p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-primary">Get In Touch</a>
@@ -58,19 +63,19 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="profile pic.jpeg" alt="Joshua Chacko George" class="profile-animate">
+                    <img src="profile pic.jpeg" alt="Joshua Chacko George — profile photo" class="profile-animate" width="280" height="280">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about" aria-label="About Joshua Chacko George">
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I am a dedicated IoT Architect, Cybersecurity & Ethical Hacking Expert, and Full-Stack Web Developer with a passion for technology and innovation. With experience in developing scalable applications and driving digital transformation, I specialize in creating efficient, user-centric solutions that solve real-world problems.</p>
+                    <p>I am a dedicated IoT Specialist, Cybersecurity &amp; Ethical Hacking practitioner, and Full-Stack Engineer with a passion for technology and innovation. With experience in developing scalable applications and driving digital transformation, I specialize in creating efficient, user-centric solutions that solve real-world problems.</p>
                     <p>My journey in technology has been driven by curiosity and a desire to make a meaningful impact. I believe in continuous learning and staying updated with the latest industry trends and technologies.</p>
                     <div class="about-stats">
                         <div class="stat">
@@ -92,17 +97,17 @@
     </section>
 
     <!-- Education & Internship Timeline Section -->
-    <section id="education" class="education">
+    <section id="education" class="education" aria-label="Education and Experience timeline">
         <div class="container">
-            <h2 class="section-title">Education & Internship</h2>
+            <h2 class="section-title">Education &amp; Internship</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>Bachelor of Technology and Engineering in Computer Science (Honours in Cybersecurity)</h3>
-                        <h4>Christ (Deemed to be University)</h4>
-                        <p class="timeline-date">2023 - Current</p>
+                        <h4>Christ (Deemed to be University), Bengaluru</h4>
+                        <p class="timeline-date">2023 – Current</p>
                         <ul>
-                            <li>Pursuing Honours in Cybersecurity</li>
+                            <li>Pursuing Honours in Cybersecurity &amp; Ethical Hacking</li>
                             <li>Active member of the Coding Club</li>
                         </ul>
                     </div>
@@ -111,7 +116,7 @@
                     <div class="timeline-content">
                         <h3>Cyber Security Analyst Intern</h3>
                         <h4>Ad Infocom Systems, Nagpur</h4>
-                        <p class="timeline-date">April 2025 - May 2025</p>
+                        <p class="timeline-date">April 2025 – May 2025</p>
                         <ul>
                             <li>Worked on real-world cybersecurity projects and risk assessments</li>
                             <li>Collaborated with senior analysts to enhance system security</li>
@@ -134,31 +139,31 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
+    <section id="projects" class="projects" aria-label="Projects by Joshua Chacko George">
         <div class="container">
             <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
-                <div class="project-card">
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="obrs.png" alt="Online Bus Reservation System">
+                        <img src="obrs.png" alt="Online Bus Reservation System — full-stack web application" loading="lazy" width="340" height="220">
                     </div>
                     <div class="project-info">
                         <h3>Online Bus Reservation System</h3>
                         <p>Developed a full-stack web application for booking and managing bus reservations, featuring real-time seat selection and secure payment integration.</p>
                     </div>
-                </div>
-                <div class="project-card">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="car racing.jpeg" alt="Car Racing Game">
+                        <img src="car racing.jpeg" alt="Car Racing Game — 2D browser game" loading="lazy" width="340" height="220">
                     </div>
                     <div class="project-info">
                         <h3>Car Racing Game</h3>
                         <p>Designed and implemented a 2D car racing game with dynamic obstacles, scoring, and smooth controls using modern game development frameworks.</p>
                     </div>
-                </div>
-                <div class="project-card">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="firewall.png" alt="Zero-Trust AI Email Firewall">
+                        <img src="firewall.png" alt="Zero-Trust AI Email Firewall — AI-driven email security" loading="lazy" width="340" height="220">
                     </div>
                     <div class="project-info">
                         <h3>
@@ -168,10 +173,10 @@
                         </h3>
                         <p>Built an AI-driven email security layer that applies zero-trust principles to detect phishing, malicious links, and anomalous sender behavior before messages reach the inbox.</p>
                     </div>
-                </div>
-                <div class="project-card">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="ACTIVITY.png" alt="Voice Monitoring and Activity Classification System">
+                        <img src="ACTIVITY.png" alt="Voice Monitoring and Activity Classification System — audio analytics pipeline" loading="lazy" width="340" height="220">
                     </div>
                     <div class="project-info">
                         <h3>
@@ -181,28 +186,28 @@
                         </h3>
                         <p>Designed an audio analytics pipeline that continuously monitors ambient sound, extracts features, and classifies activities in real time for safety and automation use cases.</p>
                     </div>
-                </div>
-                <div class="project-card">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="VOICE.png" alt="Voice Biometrics with Emotion Detection">
+                        <img src="VOICE.png" alt="Voice Biometrics with Emotion Detection — speaker authentication system" loading="lazy" width="340" height="220">
                     </div>
                     <div class="project-info">
                         <h3>Voice Biometrics with Emotion Detection</h3>
                         <p>Implemented a voice-based authentication and emotion recognition system that combines speaker identification with sentiment analysis for secure, human-aware interfaces.</p>
                     </div>
-                </div>
-                <div class="project-card">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="HEALTH.png" alt="Health Monitor">
+                        <img src="HEALTH.png" alt="Health Monitor — vitals dashboard" loading="lazy" width="340" height="220">
                     </div>
                     <div class="project-info">
                         <h3>Health Monitor</h3>
                         <p>Created a health monitoring dashboard that aggregates sensor and wearable data to track vitals, visualize trends, and surface early warning signals for anomalies.</p>
                     </div>
-                </div>
-                <div class="project-card">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="strength.png" alt="OWASP Password Strength Testing">
+                        <img src="strength.png" alt="OWASP Password Strength Testing — password security tool" loading="lazy" width="340" height="220">
                     </div>
                     <div class="project-info">
                         <h3>
@@ -212,19 +217,19 @@
                         </h3>
                         <p>Developed a responsive web tool that evaluates password entropy in real time, highlights weaknesses, and educates users on building stronger credentials.</p>
                     </div>
-                </div>
-                <div class="project-card">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="theft.png" alt="Theft Detection System">
+                        <img src="theft.png" alt="Theft Detection System — embedded security sensor solution" loading="lazy" width="340" height="220">
                     </div>
                     <div class="project-info">
                         <h3>Theft Detection System</h3>
                         <p>Engineered an embedded security solution that fuses sensor inputs and rule-based logic to detect unauthorized movement and trigger instant alerts.</p>
                     </div>
-                </div>
-                <div class="project-card">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="brainwavefile.png" alt="NeuroShield Brainwave-Pattern Authentication &amp; Cognitive Intrusion Detection">
+                        <img src="brainwavefile.png" alt="NeuroShield — Brainwave-Pattern Authentication and Cognitive Intrusion Detection System" loading="lazy" width="340" height="220">
                     </div>
                     <div class="project-info">
                         <h3>
@@ -234,52 +239,57 @@
                         </h3>
                         <p>Explored biometric security using EEG-style signals by modeling brainwave patterns for authentication and detecting abnormal cognitive states that may indicate coercion or intrusion.</p>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" aria-label="Contact Joshua Chacko George">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         <div>
                             <h3>Email</h3>
-                            <p>joshuapalathinkalxx3@gmail.com</p>
+                            <p><a href="mailto:joshuapalathinkalxx3@gmail.com">joshuapalathinkalxx3@gmail.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
                         <div>
                             <h3>LinkedIn</h3>
-                            <p><a href="https://www.linkedin.com/in/joshua-chacko-george-736123289/" target="_blank">Joshua Chacko George</a></p>
+                            <p><a href="https://www.linkedin.com/in/joshua-chacko-george-736123289/" target="_blank" rel="noopener noreferrer">Joshua Chacko George</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fab fa-github"></i>
+                        <i class="fab fa-github" aria-hidden="true"></i>
                         <div>
                             <h3>GitHub</h3>
-                            <p><a href="https://github.com/JoshuaMac003" target="_blank">JoshuaMac003</a></p>
+                            <p><a href="https://github.com/JoshuaMac003" target="_blank" rel="noopener noreferrer">JoshuaMac003</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contact-form">
+                    <p class="contact-form-note">Fill in the form below. Clicking <strong>Send Message</strong> will open your email application so you can review and send the message directly.</p>
+                    <form id="contact-form" aria-label="Contact form">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
+                            <label for="contact-name" class="sr-only">Your Name</label>
+                            <input type="text" id="contact-name" name="name" placeholder="Your Name" required autocomplete="name">
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Your Email" required>
+                            <label for="contact-email" class="sr-only">Your Email</label>
+                            <input type="email" id="contact-email" name="email" placeholder="Your Email" required autocomplete="email">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="subject" placeholder="Subject" required>
+                            <label for="contact-subject" class="sr-only">Subject</label>
+                            <input type="text" id="contact-subject" name="subject" placeholder="Subject" required>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                            <label for="contact-message" class="sr-only">Your Message</label>
+                            <textarea id="contact-message" name="message" placeholder="Your Message" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" id="contact-submit-btn">Send Message</button>
                     </form>
@@ -289,7 +299,7 @@
     </section>
 
     <!-- Message modal -->
-    <div id="message-modal" class="message-modal">
+    <div id="message-modal" class="message-modal" role="dialog" aria-modal="true" aria-labelledby="message-modal-text">
         <div class="message-modal-backdrop"></div>
         <div class="message-modal-content">
             <p id="message-modal-text"></p>
@@ -297,6 +307,78 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- LEYA Assistant -->
+    <div id="leya-container" aria-label="LEYA portfolio assistant" role="complementary">
+        <!-- Launcher button -->
+        <button id="leya-launcher" class="leya-launcher" aria-label="Open LEYA, Joshua's portfolio assistant" aria-expanded="false" aria-controls="leya-panel" type="button">
+            <span class="leya-launcher-icon" aria-hidden="true">
+                <i class="fas fa-comment-dots"></i>
+            </span>
+            <span class="leya-launcher-label">LEYA</span>
+        </button>
+
+        <!-- Chat panel -->
+        <div id="leya-panel" class="leya-panel" role="dialog" aria-modal="false" aria-label="LEYA — Joshua's Portfolio Assistant" hidden>
+            <div class="leya-header">
+                <div class="leya-header-info">
+                    <div class="leya-avatar" aria-hidden="true"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <div class="leya-name">LEYA</div>
+                        <div class="leya-subtitle">Joshua's Portfolio Assistant</div>
+                    </div>
+                </div>
+                <div class="leya-header-controls">
+                    <button id="leya-voice-toggle" class="leya-icon-btn" title="Toggle voice responses" aria-label="Toggle voice responses" aria-pressed="false" type="button">
+                        <i class="fas fa-volume-xmark"></i>
+                    </button>
+                    <button id="leya-clear" class="leya-icon-btn" title="Clear conversation" aria-label="Clear conversation history" type="button">
+                        <i class="fas fa-trash-can"></i>
+                    </button>
+                    <button id="leya-close" class="leya-icon-btn leya-close-btn" title="Close LEYA" aria-label="Close LEYA assistant" type="button">
+                        <i class="fas fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="leya-messages" class="leya-messages" role="log" aria-live="polite" aria-label="Conversation with LEYA" tabindex="0">
+                <!-- Messages injected by JS -->
+            </div>
+
+            <!-- Typing indicator -->
+            <div id="leya-typing" class="leya-typing" aria-label="LEYA is thinking" hidden>
+                <span class="leya-typing-dot" aria-hidden="true"></span>
+                <span class="leya-typing-dot" aria-hidden="true"></span>
+                <span class="leya-typing-dot" aria-hidden="true"></span>
+            </div>
+
+            <!-- Suggested questions -->
+            <div id="leya-suggestions" class="leya-suggestions" aria-label="Suggested questions">
+                <button class="leya-chip" data-query="Tell me about Joshua" type="button">Tell me about Joshua</button>
+                <button class="leya-chip" data-query="Explore his projects" type="button">Explore his projects</button>
+                <button class="leya-chip" data-query="What are his technical skills?" type="button">Technical skills</button>
+                <button class="leya-chip" data-query="Show his certifications" type="button">Certifications</button>
+                <button class="leya-chip" data-query="Tell me about his experience" type="button">Experience</button>
+                <button class="leya-chip" data-query="How can I contact him?" type="button">Contact</button>
+            </div>
+
+            <!-- Input area -->
+            <div class="leya-input-area" role="form" aria-label="Message input">
+                <div class="leya-input-row">
+                    <label for="leya-input" class="sr-only">Message LEYA</label>
+                    <input id="leya-input" class="leya-input" type="text" placeholder="Ask me anything about Joshua…" autocomplete="off" maxlength="400" aria-label="Your message to LEYA">
+                    <button id="leya-mic" class="leya-icon-btn leya-mic-btn" title="Voice input" aria-label="Start voice input" type="button">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button id="leya-send" class="leya-send-btn" aria-label="Send message" type="button">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div id="leya-mic-status" class="leya-mic-status" aria-live="polite" hidden></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+    <script src="leya.js" defer></script>
 </body>
-</html> 
+</html>

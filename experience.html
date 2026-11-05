@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experience - Joshua Chacko George</title>
+    <title>Experience — Joshua Chacko George | Skills, Certifications &amp; Achievements</title>
+    <meta name="description" content="Skills, technologies, certifications, and achievements of Joshua Chacko George — IoT Specialist, Cybersecurity, Full-Stack Engineer.">
+    <meta name="author" content="Joshua Chacko George">
+    <meta property="og:title" content="Experience — Joshua Chacko George">
+    <meta property="og:description" content="Skills, technologies, certifications, and achievements of Joshua Chacko George.">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -15,37 +20,37 @@
         Your browser does not support the video tag.
     </video>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html" class="nav-logo-text">Joshua Palathinkal</a>
+                <a href="index.html" class="nav-logo-text" aria-label="Joshua Chacko George — Home">Joshua Chacko George</a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html#home" class="nav-link">Home</a></li>
-                <li><a href="index.html#about" class="nav-link">About</a></li>
-                <li><a href="index.html#education" class="nav-link">Education</a></li>
-                <li class="dropdown">
-                    <a href="experience.html" class="nav-link dropdown-toggle">Experience <i class="fas fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="experience.html#skills" class="dropdown-item">Skills and Technologies</a></li>
-                        <li><a href="experience.html#certifications" class="dropdown-item">Other Certification and Achievements</a></li>
+            <ul class="nav-menu" id="nav-menu" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="index.html#about" class="nav-link" role="menuitem">About</a></li>
+                <li role="none"><a href="index.html#education" class="nav-link" role="menuitem">Education</a></li>
+                <li class="dropdown" role="none" id="exp-dropdown">
+                    <a href="experience.html" class="nav-link dropdown-toggle" role="menuitem" aria-haspopup="true" aria-expanded="false" id="exp-dropdown-toggle">Experience <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu" role="menu" aria-label="Experience submenu">
+                        <li role="none"><a href="experience.html#skills" class="dropdown-item" role="menuitem">Skills and Technologies</a></li>
+                        <li role="none"><a href="experience.html#certifications" class="dropdown-item" role="menuitem">Other Certification and Achievements</a></li>
                     </ul>
                 </li>
-                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li role="none"><a href="index.html#projects" class="nav-link" role="menuitem">Projects</a></li>
+                <li role="none"><a href="index.html#contact" class="nav-link" role="menuitem">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle mobile navigation menu" aria-expanded="false" aria-controls="nav-menu" type="button">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills" style="padding-top: 120px;">
+    <section id="skills" class="skills" style="padding-top: 120px;" aria-label="Skills and Technologies">
         <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
+            <h2 class="section-title">Skills &amp; Technologies</h2>
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3>Programming Languages</h3>
@@ -84,7 +89,7 @@
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Tools & Platforms</h3>
+                    <h3>Tools &amp; Platforms</h3>
                     <div class="skill-items">
                         <span class="skill-item">Git</span>
                         <span class="skill-item">Docker</span>
@@ -106,185 +111,369 @@
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="certifications">
+    <section id="certifications" class="certifications" aria-label="Certifications and Achievements">
         <div class="container">
-            <h2 class="section-title">Certifications & Achievements</h2>
-            <div class="certifications-grid">
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>Cybersecurity Fundamentals</h3>
-                        <h4>IBM</h4>
-                        <p class="certification-date">2024</p>
-                        <p>Comprehensive understanding of cybersecurity principles, threat detection, and security best practices.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-verified">Verified</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>IoT Security</h3>
-                        <h4>Cisco</h4>
-                        <p class="certification-date">2024</p>
-                        <p>Specialized training in securing Internet of Things devices and networks against cyber threats.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-verified">Verified</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>Python Programming</h3>
-                        <h4>Microsoft</h4>
-                        <p class="certification-date">2023</p>
-                        <p>Advanced Python programming skills for data analysis, automation, and web development.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-verified">Verified</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>Database Management</h3>
-                        <h4>Oracle</h4>
-                        <p class="certification-date">2023</p>
-                        <p>Expertise in database design, SQL optimization, and data security practices.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-verified">Verified</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>Cloud Security</h3>
-                        <h4>AWS</h4>
-                        <p class="certification-date">2024</p>
-                        <p>Comprehensive knowledge of cloud security architecture and best practices for AWS environments.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-verified">Verified</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>Ethical Hacking</h3>
-                        <h4>EC-Council</h4>
-                        <p class="certification-date">2024</p>
-                        <p>Advanced penetration testing and ethical hacking methodologies for security assessment.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-verified">Verified</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>Bachelor of Technology in Computer Science</h3>
-                        <h4>Christ (Deemed to be University)</h4>
-                        <p class="certification-date">2023 - Current</p>
-                        <p>Pursuing Honours in Cybersecurity with focus on IoT applications and security protocols.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-progress">In Progress</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>Cyber Security Analyst Intern</h3>
-                        <h4>Ad Infocom Systems, Nagpur</h4>
-                        <p class="certification-date">April 2025 - May 2025</p>
-                        <p>Hands-on experience in real-world cybersecurity projects and risk assessments.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-completed">Completed</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>Active Member - Coding Club</h3>
-                        <h4>Christ (Deemed to be University)</h4>
-                        <p class="certification-date">2023 - Current</p>
-                        <p>Active participation in university coding club, contributing to collaborative projects and skill development.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-active">Active</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>NPTEL Certifications</h3>
-                        <h4>National Programme on Technology Enhanced Learning</h4>
-                        <p class="certification-date">2023 - 2024</p>
-                        <p>Multiple certifications in computer science, programming, and technology courses from premier institutions.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-verified">Verified</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <div class="certification-content">
-                        <h3>Infosys Certifications</h3>
-                        <h4>Infosys Limited</h4>
-                        <p class="certification-date">2023 - 2024</p>
-                        <p>Professional certifications in software development, digital technologies, and enterprise solutions.</p>
-                        <div class="certification-badge">
-                            <span class="badge badge-verified">Verified</span>
-                        </div>
-                    </div>
+            <h2 class="section-title">Certifications &amp; Achievements</h2>
+
+            <!-- Filter bar -->
+            <div class="cert-filter-bar" role="search" aria-label="Filter certifications">
+                <label for="cert-search" class="sr-only">Search certifications</label>
+                <input type="search" id="cert-search" class="cert-search-input" placeholder="Search certifications…" autocomplete="off" aria-label="Search certifications by title or issuer">
+                <div class="cert-filter-chips" role="group" aria-label="Filter by issuer">
+                    <button class="cert-filter-chip active" data-filter="all" type="button">All</button>
+                    <button class="cert-filter-chip" data-filter="Infosys" type="button">Infosys</button>
+                    <button class="cert-filter-chip" data-filter="AWS" type="button">AWS</button>
+                    <button class="cert-filter-chip" data-filter="MongoDB" type="button">MongoDB</button>
+                    <button class="cert-filter-chip" data-filter="Cisco" type="button">Cisco</button>
+                    <button class="cert-filter-chip" data-filter="NPTEL" type="button">NPTEL</button>
+                    <button class="cert-filter-chip" data-filter="Other" type="button">Other</button>
                 </div>
             </div>
+
+            <div class="certifications-grid" id="certifications-grid">
+
+                <!-- ===== INFOSYS ===== -->
+                <div class="certification-card" data-issuer="Infosys">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-brain"></i></div>
+                    <div class="certification-content">
+                        <h3>Artificial Intelligence Foundation</h3>
+                        <h4>Infosys</h4>
+                        <p class="certification-date">November 2026</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="Infosys">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-language"></i></div>
+                    <div class="certification-content">
+                        <h3>Introduction to Natural Language Processing</h3>
+                        <h4>Infosys</h4>
+                        <p class="certification-date">November 2026</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="Infosys">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-network-wired"></i></div>
+                    <div class="certification-content">
+                        <h3>Introduction to Deep Learning</h3>
+                        <h4>Infosys</h4>
+                        <p class="certification-date">November 2026</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="Infosys">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-robot"></i></div>
+                    <div class="certification-content">
+                        <h3>Introduction to Artificial Intelligence</h3>
+                        <h4>Infosys</h4>
+                        <p class="certification-date">November 2026</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== SIMPLILEARN ===== -->
+                <div class="certification-card" data-issuer="Other">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-cloud"></i></div>
+                    <div class="certification-content">
+                        <h3>Introduction to Cloud Computing</h3>
+                        <h4>Simplilearn</h4>
+                        <p class="certification-date">January 2026</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== AWS ===== -->
+                <div class="certification-card" data-issuer="AWS">
+                    <div class="certification-icon" aria-hidden="true"><i class="fab fa-aws"></i></div>
+                    <div class="certification-content">
+                        <h3>AWS Academy Graduate – Cloud Foundations</h3>
+                        <h4>Amazon Web Services (AWS)</h4>
+                        <p class="certification-date">December 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="AWS">
+                    <div class="certification-icon" aria-hidden="true"><i class="fab fa-aws"></i></div>
+                    <div class="certification-content">
+                        <h3>AWS Academy Graduate — Cloud Data Pipeline Builder Training Badge</h3>
+                        <h4>Amazon Web Services (AWS)</h4>
+                        <p class="certification-date">December 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="AWS">
+                    <div class="certification-icon" aria-hidden="true"><i class="fab fa-aws"></i></div>
+                    <div class="certification-content">
+                        <h3>AWS Academy Graduate — Cloud Data Pipeline Builder</h3>
+                        <h4>Amazon Web Services (AWS)</h4>
+                        <p class="certification-date">December 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== MONGODB ===== -->
+                <div class="certification-card" data-issuer="MongoDB">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+                    <div class="certification-content">
+                        <h3>Introduction to MongoDB</h3>
+                        <h4>MongoDB</h4>
+                        <p class="certification-date">February 2025</p>
+                        <p class="certification-credential">Credential ID: MDBl7fxeowebs</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="MongoDB">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+                    <div class="certification-content">
+                        <h3>MongoDB and the Document Model</h3>
+                        <h4>MongoDB</h4>
+                        <p class="certification-date">February 2025</p>
+                        <p class="certification-credential">Credential ID: MDBp8czii1vg7</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="MongoDB">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+                    <div class="certification-content">
+                        <h3>MongoDB Data Modelling</h3>
+                        <h4>MongoDB</h4>
+                        <p class="certification-date">February 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="MongoDB">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+                    <div class="certification-content">
+                        <h3>MongoDB Indexes</h3>
+                        <h4>MongoDB</h4>
+                        <p class="certification-date">February 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="MongoDB">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+                    <div class="certification-content">
+                        <h3>CRUD Operations — Replace and Delete Documents</h3>
+                        <h4>MongoDB</h4>
+                        <p class="certification-date">February 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="MongoDB">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+                    <div class="certification-content">
+                        <h3>CRUD Operations — Modifying Query Results</h3>
+                        <h4>MongoDB</h4>
+                        <p class="certification-date">January 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="MongoDB">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+                    <div class="certification-content">
+                        <h3>MongoDB Aggregation</h3>
+                        <h4>MongoDB</h4>
+                        <p class="certification-date">January 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="MongoDB">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+                    <div class="certification-content">
+                        <h3>Connecting to MongoDB Database</h3>
+                        <h4>MongoDB</h4>
+                        <p class="certification-date">January 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="MongoDB">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+                    <div class="certification-content">
+                        <h3>MongoDB Transactions</h3>
+                        <h4>MongoDB</h4>
+                        <p class="certification-date">January 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== NPTEL ===== -->
+                <div class="certification-card" data-issuer="NPTEL">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-microchip"></i></div>
+                    <div class="certification-content">
+                        <h3>Introduction to Internet Of Things</h3>
+                        <h4>NPTEL — in collaboration with IIT Kharagpur</h4>
+                        <p class="certification-date">January 2025</p>
+                        <p>Covered IoT architecture, communication protocols, security concerns, and practical IoT solution development.</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== CISCO NETWORKING ACADEMY ===== -->
+                <div class="certification-card" data-issuer="Cisco">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-network-wired"></i></div>
+                    <div class="certification-content">
+                        <h3>Introduction to IoT and Digital Transformation</h3>
+                        <h4>Cisco Networking Academy</h4>
+                        <p class="certification-date">June 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== CHRIST UNIVERSITY ===== -->
+                <div class="certification-card" data-issuer="Other">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-code"></i></div>
+                    <div class="certification-content">
+                        <h3>Python Programming</h3>
+                        <h4>Christ University, Bangalore</h4>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== INFOSYS SPRINGBOARD ===== -->
+                <div class="certification-card" data-issuer="Infosys">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-network-wired"></i></div>
+                    <div class="certification-content">
+                        <h3>Networking Devices</h3>
+                        <h4>Infosys Springboard</h4>
+                        <p class="certification-date">January 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== COURSERA PROJECT NETWORK ===== -->
+                <div class="certification-card" data-issuer="Other">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-laptop-code"></i></div>
+                    <div class="certification-content">
+                        <h3>Configure and Test Basic Network Connectivity</h3>
+                        <h4>Coursera Project Network</h4>
+                        <p class="certification-date">February 2025</p>
+                        <p class="certification-credential">Credential ID: 7601IMJ6MKWB</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== SKILLSOFT ===== -->
+                <div class="certification-card" data-issuer="Other">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-network-wired"></i></div>
+                    <div class="certification-content">
+                        <h3>Networking Devices</h3>
+                        <h4>Skillsoft</h4>
+                        <p class="certification-date">February 2025</p>
+                        <p class="certification-credential">Credential ID: 134577647</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== CISCO ===== -->
+                <div class="certification-card" data-issuer="Cisco">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-shield-alt"></i></div>
+                    <div class="certification-content">
+                        <h3>Endpoint Security</h3>
+                        <h4>Cisco</h4>
+                        <p class="certification-date">February 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="Cisco">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-user-shield"></i></div>
+                    <div class="certification-content">
+                        <h3>Junior Cybersecurity Analyst Career Path</h3>
+                        <h4>Cisco</h4>
+                        <p class="certification-date">February 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="Cisco">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-lock"></i></div>
+                    <div class="certification-content">
+                        <h3>Ethical Hacker</h3>
+                        <h4>Cisco</h4>
+                        <p class="certification-date">February 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="Cisco">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-lock"></i></div>
+                    <div class="certification-content">
+                        <h3>Ethical Hacker</h3>
+                        <h4>Cisco</h4>
+                        <p class="certification-date">February 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="Cisco">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-shield-alt"></i></div>
+                    <div class="certification-content">
+                        <h3>Introduction to Cybersecurity</h3>
+                        <h4>Cisco</h4>
+                        <p class="certification-date">February 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="Cisco">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-chart-bar"></i></div>
+                    <div class="certification-content">
+                        <h3>Introduction to Data Science</h3>
+                        <h4>Cisco</h4>
+                        <p class="certification-date">February 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <div class="certification-card" data-issuer="Cisco">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-network-wired"></i></div>
+                    <div class="certification-content">
+                        <h3>Networking Basics</h3>
+                        <h4>Cisco</h4>
+                        <p class="certification-date">February 2025</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+                <!-- ===== COGNITIVE CLASS ===== -->
+                <div class="certification-card" data-issuer="Other">
+                    <div class="certification-icon" aria-hidden="true"><i class="fas fa-comments"></i></div>
+                    <div class="certification-content">
+                        <h3>Build Your Own Chatbot</h3>
+                        <h4>Cognitive Class</h4>
+                        <p class="certification-date">June 2024</p>
+                        <p class="certification-credential">Credential ID: 2b8b56eab1634828b34b2b8d74bd35ff</p>
+                        <div class="certification-badge"><span class="badge badge-verified">Verified</span></div>
+                    </div>
+                </div>
+
+            </div><!-- /certifications-grid -->
+
+            <!-- No results message -->
+            <p id="cert-no-results" class="cert-no-results" hidden>No certifications match your search.</p>
+
         </div>
     </section>
 
     <!-- Extra Curricular Achievements Section -->
-    <section id="extracurricular" class="extracurricular">
+    <section id="extracurricular" class="extracurricular" aria-label="Extra Curricular Achievements">
         <div class="container">
             <h2 class="section-title">Extra Curricular Achievements</h2>
             <div class="achievement-highlight">
                 <div class="achievement-card">
-                    <div class="achievement-icon">
+                    <div class="achievement-icon" aria-hidden="true">
                         <i class="fas fa-trophy"></i>
                     </div>
                     <div class="achievement-content">
@@ -301,7 +490,54 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <!-- LEYA Assistant -->
+    <div id="leya-container" aria-label="LEYA portfolio assistant" role="complementary">
+        <button id="leya-launcher" class="leya-launcher" aria-label="Open LEYA, Joshua's portfolio assistant" aria-expanded="false" aria-controls="leya-panel" type="button">
+            <span class="leya-launcher-icon" aria-hidden="true"><i class="fas fa-comment-dots"></i></span>
+            <span class="leya-launcher-label">LEYA</span>
+        </button>
+        <div id="leya-panel" class="leya-panel" role="dialog" aria-modal="false" aria-label="LEYA — Joshua's Portfolio Assistant" hidden>
+            <div class="leya-header">
+                <div class="leya-header-info">
+                    <div class="leya-avatar" aria-hidden="true"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <div class="leya-name">LEYA</div>
+                        <div class="leya-subtitle">Joshua's Portfolio Assistant</div>
+                    </div>
+                </div>
+                <div class="leya-header-controls">
+                    <button id="leya-voice-toggle" class="leya-icon-btn" title="Toggle voice responses" aria-label="Toggle voice responses" aria-pressed="false" type="button"><i class="fas fa-volume-xmark"></i></button>
+                    <button id="leya-clear" class="leya-icon-btn" title="Clear conversation" aria-label="Clear conversation history" type="button"><i class="fas fa-trash-can"></i></button>
+                    <button id="leya-close" class="leya-icon-btn leya-close-btn" title="Close LEYA" aria-label="Close LEYA assistant" type="button"><i class="fas fa-xmark"></i></button>
+                </div>
+            </div>
+            <div id="leya-messages" class="leya-messages" role="log" aria-live="polite" aria-label="Conversation with LEYA" tabindex="0"></div>
+            <div id="leya-typing" class="leya-typing" aria-label="LEYA is thinking" hidden>
+                <span class="leya-typing-dot" aria-hidden="true"></span>
+                <span class="leya-typing-dot" aria-hidden="true"></span>
+                <span class="leya-typing-dot" aria-hidden="true"></span>
+            </div>
+            <div id="leya-suggestions" class="leya-suggestions" aria-label="Suggested questions">
+                <button class="leya-chip" data-query="Tell me about Joshua" type="button">Tell me about Joshua</button>
+                <button class="leya-chip" data-query="Explore his projects" type="button">Explore his projects</button>
+                <button class="leya-chip" data-query="What are his technical skills?" type="button">Technical skills</button>
+                <button class="leya-chip" data-query="Show his certifications" type="button">Certifications</button>
+                <button class="leya-chip" data-query="Tell me about his experience" type="button">Experience</button>
+                <button class="leya-chip" data-query="How can I contact him?" type="button">Contact</button>
+            </div>
+            <div class="leya-input-area" role="form" aria-label="Message input">
+                <div class="leya-input-row">
+                    <label for="leya-input" class="sr-only">Message LEYA</label>
+                    <input id="leya-input" class="leya-input" type="text" placeholder="Ask me anything about Joshua…" autocomplete="off" maxlength="400">
+                    <button id="leya-mic" class="leya-icon-btn leya-mic-btn" title="Voice input" aria-label="Start voice input" type="button"><i class="fas fa-microphone"></i></button>
+                    <button id="leya-send" class="leya-send-btn" aria-label="Send message" type="button"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+                </div>
+                <div id="leya-mic-status" class="leya-mic-status" aria-live="polite" hidden></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+    <script src="leya.js" defer></script>
 </body>
 </html>
-

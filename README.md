@@ -1,127 +1,67 @@
-# Joshua Chacko George - Professional Portfolio
+# Joshua Chacko George — Professional Portfolio
 
-A modern, responsive portfolio website showcasing Joshua Chacko George's professional experience, skills, and achievements.
+A modern, responsive portfolio website for Joshua Chacko George: IoT Specialist | Honours in Cybersecurity & Ethical Hacking | Cybersecurity & AI/ML | Full-Stack Engineering | DevOps & Cloud Technologies.
 
 ## 🌟 Features
 
-- **Modern Design**: Clean, professional layout with smooth animations
-- **Responsive**: Fully responsive design that works on all devices
-- **Interactive Elements**: Smooth scrolling, hover effects, and animations
-- **Contact Form**: Functional contact form with validation
-- **Professional Sections**: About, Experience, Skills, and Contact sections
-- **LinkedIn Integration**: Direct link to Joshua's LinkedIn profile
-
-## 🚀 Quick Start
-
-1. **Clone or Download**: Download all files to your local machine
-2. **Open**: Open `index.html` in your web browser
-3. **Customize**: Edit the content in `index.html` to personalize your information
+- **LEYA** — Built-in AI portfolio assistant with voice input/output, intent recognition, and navigation actions
+- **Responsive** — Tested from 320px to 1920px viewports
+- **9 Projects** — With descriptions, images, and GitHub links
+- **31 Certifications** — Searchable, filterable certification grid
+- **Accessible** — ARIA roles, keyboard navigation, screen-reader support, reduced-motion support
+- **Performance** — Deferred scripts, lazy-loaded images, passive event listeners
+- **Contact Form** — Opens Gmail compose with pre-filled message
 
 ## 📁 File Structure
 
 ```
 portfolio/
-├── index.html          # Main HTML file
+├── index.html          # Homepage (Hero, About, Education, Projects, Contact)
+├── experience.html     # Experience page (Skills, Certifications, Achievements)
 ├── styles.css          # CSS styles and responsive design
-├── script.js           # JavaScript functionality
+├── script.js           # Navigation, animations, contact form, cert filter
+├── leya.js             # LEYA portfolio assistant (knowledge base + intent engine)
+├── profile pic.jpeg    # Profile photo
+├── [project images]    # Project screenshots and assets
 └── README.md           # This file
 ```
 
-## 🎨 Customization
+## 🤖 LEYA — Portfolio Assistant
 
-### Personal Information
-Edit the following sections in `index.html`:
+LEYA is a lightweight, browser-native portfolio assistant. It runs entirely in the browser — no external API, no AI model downloads, no file uploads.
 
-- **Name and Title**: Update the hero section with your name and title
-- **About Section**: Modify the description and statistics
-- **Experience**: Update work history and achievements
-- **Skills**: Add or modify your technical skills
-- **Contact Information**: Update email, location, and social links
+**Capabilities:**
+- Answers questions about education, experience, skills, projects, certifications, achievements, and contact info
+- Navigates to portfolio sections on request
+- Voice input via Web Speech API (Chrome/Edge)
+- Voice output via `window.speechSynthesis`
+- Politely declines off-topic questions
 
-### Profile Photo
-Replace the placeholder image URL in the hero section with your actual photo:
+**Usage:** Click the **LEYA** button at the bottom-right of any page.
 
-```html
-<img src="your-photo-url.jpg" alt="Joshua Chacko George">
-```
+## 🔧 Technologies
 
-### Colors and Styling
-Modify the color scheme in `styles.css`:
+- **HTML5** · **CSS3** · **JavaScript (ES6+)**
+- **Font Awesome 6** · **Google Fonts (Inter)**
+- **Web Speech API** (voice input — Chrome/Edge)
+- **SpeechSynthesis API** (voice output)
 
-- Primary color: `#2563eb` (blue)
-- Secondary colors: Various shades of gray
-- Background gradients: Hero section gradient
+## 📞 Contact
 
-## 📱 Responsive Design
-
-The website is fully responsive and includes:
-
-- Mobile-first design approach
-- Hamburger menu for mobile devices
-- Flexible grid layouts
-- Optimized typography for all screen sizes
-
-## 🔧 Technologies Used
-
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with Flexbox and Grid
-- **JavaScript**: Interactive functionality
-- **Font Awesome**: Icons
-- **Google Fonts**: Inter font family
-
-## 📞 Contact Information
-
+- **Email**: joshuapalathinkalxx3@gmail.com
 - **LinkedIn**: [Joshua Chacko George](https://www.linkedin.com/in/joshua-chacko-george-736123289/)
-- **Email**: joshua.chacko.george@email.com
-- **Location**: India
-
-## 🎯 Sections Overview
-
-### Hero Section
-- Professional introduction
-- Call-to-action buttons
-- Profile photo display
-
-### About Section
-- Personal description
-- Key statistics and achievements
-- Professional summary
-
-### Experience Section
-- Timeline of work experience
-- Company names and positions
-- Key responsibilities and achievements
-
-### Skills Section
-- Technical skills organized by category
-- Programming languages
-- Frameworks and tools
-- Soft skills
-
-### Contact Section
-- Contact information
-- Functional contact form
-- Social media links
+- **GitHub**: [JoshuaMac003](https://github.com/JoshuaMac003)
 
 ## 🚀 Deployment
 
-To deploy this portfolio:
+The site is a pure static website. Upload all files to any web host:
 
-1. **GitHub Pages**: Upload to GitHub and enable Pages
-2. **Netlify**: Drag and drop the folder to Netlify
-3. **Vercel**: Connect your GitHub repository
-4. **Traditional Hosting**: Upload files to any web server
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Feel free to fork this project and customize it for your own portfolio!
+1. **GitHub Pages** — Push to `main` branch → Settings → Pages → Deploy from branch
+2. **Netlify** — Drag and drop the folder at [netlify.com](https://netlify.com)
+3. **Vercel** — Connect the GitHub repo at [vercel.com](https://vercel.com)
 
 ---
 
 **Joshua Chacko George**  
-Software Engineer & Technology Professional  
-[LinkedIn Profile](https://www.linkedin.com/in/joshua-chacko-george-736123289/) 
+IoT Specialist | Honours in Cybersecurity & Ethical Hacking | Full-Stack Engineer  
+[LinkedIn](https://www.linkedin.com/in/joshua-chacko-george-736123289/)

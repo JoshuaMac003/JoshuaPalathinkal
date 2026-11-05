@@ -1,33 +1,71 @@
 /**
  * LEYA — Joshua Chacko George's Portfolio Assistant
  *
- * Architecture:
- *  - Structured portfolio knowledge base (no invented data)
- *  - Deterministic intent recognition via keyword/regex patterns
- *  - Navigation actions using real page section IDs
- *  - Browser Web Speech API for optional voice input
- *  - window.speechSynthesis for optional voice output
- *  - Chat-only: no file upload, no external API, no AI model
+ * Version: 2.1 — Production Autonomous Pass
+ *
+ * Features & Architecture:
+ *  - Deterministic intent engine with regex word boundaries and priority scoring
+ *  - Precise separation of Cyber Security (2025) and AI (2026) internships
+ *  - Specific filters for IoT, Cybersecurity, AI projects & certifications
+ *  - Runtime base path detection for local & GitHub Pages subdirectory (/JoshuaPalathinkal/)
+ *  - Native Web Speech API for optional voice recognition
+ *  - SpeechSynthesis API with dedicated stop-speech control
+ *  - Strict privacy and knowledge boundary enforcement (no invented data)
+ *  - XSS-safe DOM message rendering
  */
 
 (function () {
     'use strict';
 
     /* ============================================================
-       PORTFOLIO KNOWLEDGE BASE
-       All content sourced from verified portfolio information.
-       Nothing invented.
+       GUARD — only initialize once per page load
+       ============================================================ */
+    if (window.__leyaInitialized) return;
+    window.__leyaInitialized = true;
+
+    /* ============================================================
+       BASE PATH DETECTION — handles local, root, and GitHub Pages repo path
+       ============================================================ */
+    function getBasePath() {
+        const path = window.location.pathname;
+        const lastSlash = path.lastIndexOf('/');
+        const base = lastSlash > 0 ? path.substring(0, lastSlash + 1) : '/';
+        return base;
+    }
+
+    function resolvePage(filename) {
+        const base = getBasePath();
+        return base + filename;
+    }
+
+    function currentPageFilename() {
+        const path = window.location.pathname;
+        const parts = path.split('/');
+        const last  = parts[parts.length - 1];
+        return last || 'index.html';
+    }
+
+    /* ============================================================
+       PORTFOLIO KNOWLEDGE BASE (Verified source of truth only)
        ============================================================ */
     const KB = {
-        intro: `Joshua Chacko George is an IoT Specialist with Honours in Cybersecurity & Ethical Hacking, working in Cybersecurity & AI/ML, Full-Stack Engineering, and DevOps & Cloud Technologies. He is a B.Tech Computer Science student at Christ (Deemed to be University), Bengaluru, pursuing his Honours in Cybersecurity. He is passionate about creating innovative solutions and driving digital transformation through technology.`,
+        name: 'Joshua Chacko George',
 
-        about: `Joshua Chacko George is a dedicated IoT Specialist, Cybersecurity & Ethical Hacking practitioner, and Full-Stack Engineer. He has experience developing scalable applications and driving digital transformation. He specialises in creating efficient, user-centric solutions that solve real-world problems. His journey in technology is driven by curiosity and a desire to make a meaningful impact, with a focus on continuous learning and staying updated with the latest industry trends.`,
+        headline: 'IoT Specialist | Honours in Cybersecurity & Ethical Hacking | Cybersecurity & AI/ML | Full-Stack Engineering | DevOps & Cloud Technologies',
 
-        education: `Joshua is studying for a Bachelor of Technology and Engineering in Computer Science with Honours in Cybersecurity & Ethical Hacking at Christ (Deemed to be University), Bengaluru, since 2023. He is an active member of the Coding Club there.`,
+        intro: `Joshua Chacko George is an IoT Specialist with Honours in Cybersecurity & Ethical Hacking, practicing across Cybersecurity & AI/ML, Full-Stack Engineering, and DevOps & Cloud Technologies. He is a B.Tech Computer Science student at CHRIST (Deemed to be University), Bengaluru, pursuing Honours in Cybersecurity & Ethical Hacking, and works as Full Stack Engineer & DevOps Administrator at All Med Equipment in Chicago, USA.`,
 
-        internship: `Joshua completed a Cyber Security Analyst Intern position at Ad Infocom Systems, Nagpur from April 2025 to May 2025. He worked on real-world cybersecurity projects and risk assessments, and collaborated with senior analysts to enhance system security.`,
+        about: `Joshua Chacko George is a dedicated IoT Specialist, Cybersecurity & Ethical Hacking practitioner, and Full-Stack Engineer with a passion for technology and innovation. With experience developing scalable applications and driving digital transformation, he specializes in creating efficient, user-centric solutions that solve real-world problems. His journey in technology is driven by curiosity and a commitment to continuous learning and industry excellence.`,
 
-        employment: `Joshua currently works as a Full Stack Engineer & DevOps Administrator at All Med Equipment, Chicago, Illinois, USA, since April 3, 2025. He leads full-stack platform development, deployment automation, and infrastructure networking operations to maintain reliable production systems. He also implements security hardening, monitoring solutions, and regular maintenance to ensure high availability and operational stability of the company web platform.`,
+        education: `Joshua is pursuing a Bachelor of Technology and Engineering in Computer Science with Honours in Cybersecurity & Ethical Hacking at CHRIST (Deemed to be University), Bengaluru (2023 – Current). He is also an active member of the university Coding Club.`,
+
+        internship_cyber: `Joshua completed a Cyber Security Analyst Internship at AD Infocom Systems, Nagpur (April 2025 – May 2025). During this internship, he worked on real-world cybersecurity projects and risk assessments, and collaborated with senior analysts to enhance system security.`,
+
+        internship_ai: `Joshua completed an Artificial Intelligence Internship at AD Infocom Systems, Maharashtra, India (April 2026 – May 2026, On-site). He worked on a Pneumonia Detection project applying machine learning techniques to medical image analysis and identifying patterns associated with pneumonia. Associated skills: Artificial Intelligence (AI), Machine Learning (ML), Medical Image Analysis, Image-Based Disease Classification, Pattern Identification, and Internet of Things (IoT).`,
+
+        internship_both: `Joshua has completed two separate internships at AD Infocom Systems:\n\n1. Cyber Security Analyst Intern (April 2025 – May 2025, Nagpur):\nWorked on real-world cybersecurity projects, risk assessments, and collaborated with senior analysts to enhance system security.\n\n2. Artificial Intelligence Intern (April 2026 – May 2026, Maharashtra, India · On-site):\nWorked on a Pneumonia Detection project applying machine learning to medical image analysis, pattern identification, and disease classification.`,
+
+        employment: `Joshua currently works as a Full Stack Engineer & DevOps Administrator at All Med Equipment, Chicago, Illinois, USA (April 3, 2025 – Present). He leads full-stack platform development, deployment automation, and infrastructure networking operations to maintain reliable production systems. He also implements security hardening, monitoring solutions, and regular maintenance to ensure high availability and operational stability of the company web platform.`,
 
         skills: {
             programming: ['JavaScript', 'Python', 'Java', 'C++'],
@@ -98,6 +136,9 @@
                 'Introduction to Artificial Intelligence — November 2026',
                 'Networking Devices (Infosys Springboard) — January 2025',
             ],
+            simplilearn: [
+                'Introduction to Cloud Computing — January 2026',
+            ],
             aws: [
                 'AWS Academy Graduate – Cloud Foundations — December 2025',
                 'AWS Academy Graduate — Cloud Data Pipeline Builder Training Badge — December 2025',
@@ -114,6 +155,9 @@
                 'Connecting to MongoDB Database — January 2025',
                 'MongoDB Transactions — January 2025',
             ],
+            nptel: [
+                'Introduction to Internet of Things — January 2025 (in collaboration with IIT Kharagpur)',
+            ],
             cisco: [
                 'Introduction to IoT and Digital Transformation (Cisco Networking Academy) — June 2025',
                 'Endpoint Security — February 2025',
@@ -124,11 +168,7 @@
                 'Introduction to Data Science — February 2025',
                 'Networking Basics — February 2025',
             ],
-            nptel: [
-                'Introduction to Internet of Things (in collaboration with IIT Kharagpur) — January 2025',
-            ],
             other: [
-                'Introduction to Cloud Computing (Simplilearn) — January 2026',
                 'Build Your Own Chatbot (Cognitive Class) — June 2024 (Credential ID: 2b8b56eab1634828b34b2b8d74bd35ff)',
                 'Configure and Test Basic Network Connectivity (Coursera Project Network) — February 2025 (Credential ID: 7601IMJ6MKWB)',
                 'Networking Devices (Skillsoft) — February 2025 (Credential ID: 134577647)',
@@ -136,7 +176,7 @@
             ],
         },
 
-        achievements: `Joshua won the Under-19 Kerala State CISCE Volleyball Championship in 2022, representing Kerala in the Council for the Indian School Certificate Examinations tournament. He also actively participated in the university Coding Club at Christ (Deemed to be University).`,
+        achievements: `Joshua won the Under-19 Kerala State CISCE Volleyball Championship in 2022, representing Kerala in the Council for the Indian School Certificate Examinations tournament. He also actively participates in the university Coding Club at CHRIST (Deemed to be University).`,
 
         contact: {
             email:    'joshuapalathinkalxx3@gmail.com',
@@ -147,29 +187,31 @@
 
     /* ============================================================
        NAVIGATION DESTINATIONS
-       Maps intent to page + anchor.
        ============================================================ */
-    const NAV_TARGETS = {
-        home:            { page: 'index.html', anchor: '#home' },
-        about:           { page: 'index.html', anchor: '#about' },
-        education:       { page: 'index.html', anchor: '#education' },
-        experience:      { page: 'experience.html', anchor: '' },
-        skills:          { page: 'experience.html', anchor: '#skills' },
-        certifications:  { page: 'experience.html', anchor: '#certifications' },
-        achievements:    { page: 'experience.html', anchor: '#extracurricular' },
-        projects:        { page: 'index.html', anchor: '#projects' },
-        contact:         { page: 'index.html', anchor: '#contact' },
+    const NAV_PAGES = {
+        home:           { file: 'index.html',      anchor: '#home' },
+        about:          { file: 'index.html',      anchor: '#about' },
+        education:      { file: 'index.html',      anchor: '#education' },
+        projects:       { file: 'index.html',      anchor: '#projects' },
+        contact:        { file: 'index.html',      anchor: '#contact' },
+        experience:     { file: 'experience.html', anchor: '' },
+        skills:         { file: 'experience.html', anchor: '#skills' },
+        certifications: { file: 'experience.html', anchor: '#certifications' },
+        achievements:   { file: 'experience.html', anchor: '#extracurricular' },
     };
 
     function navigate(key) {
-        const dest = NAV_TARGETS[key];
+        const dest = NAV_PAGES[key];
         if (!dest) return;
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        const targetPage  = dest.page;
-        const anchor      = dest.anchor;
 
-        if (currentPage === targetPage || (currentPage === '' && targetPage === 'index.html')) {
-            // Same page — smooth scroll
+        const curFile = currentPageFilename();
+        const tgtFile = dest.file;
+        const anchor  = dest.anchor;
+
+        const isSamePage = (curFile === tgtFile)
+            || (curFile === '' && tgtFile === 'index.html');
+
+        if (isSamePage) {
             if (anchor) {
                 const el = document.querySelector(anchor);
                 if (el) {
@@ -182,280 +224,181 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         } else {
-            // Cross-page navigation
-            window.location.href = anchor ? `${targetPage}${anchor}` : targetPage;
+            const resolved = resolvePage(tgtFile);
+            window.location.href = anchor ? (resolved + anchor) : resolved;
         }
     }
 
     /* ============================================================
-       INTENT RECOGNITION
+       INTENT RECOGNITION HELPERS
        ============================================================ */
     function normalise(str) {
         return str.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
     }
 
-    function anyWord(input, words) {
-        return words.some(w => input.includes(w));
-    }
-
-    // Intent patterns: each has a priority (higher = checked first) and a test function.
+    /* ============================================================
+       INTENT DEFINITIONS (Ordered by specificity)
+       ============================================================ */
     const INTENTS = [
 
-        // ---- NAVIGATION REQUESTS ----
-        {
-            name: 'nav_home',
-            priority: 10,
-            test: i => /\b(go|take|navigate|scroll|show|open)\b.*\bhome\b/.test(i) || i === 'home',
-        },
-        {
-            name: 'nav_about',
-            priority: 10,
-            test: i => /\b(go|take|navigate|scroll|show|open)\b.*\babout\b/.test(i) || i === 'about',
-        },
-        {
-            name: 'nav_education',
-            priority: 10,
-            test: i => /\b(go|take|navigate|scroll|show|open)\b.*\beducation\b/.test(i) ||
-                       /\b(show|take)\b.*\b(degree|study|university)\b/.test(i),
-        },
-        {
-            name: 'nav_experience',
-            priority: 10,
-            test: i => /\b(go|take|navigate|scroll|show|open)\b.*\bexperience\b/.test(i) ||
-                       i === 'experience',
-        },
-        {
-            name: 'nav_skills',
-            priority: 10,
-            test: i => /\b(go|take|navigate|scroll|show|open)\b.*\b(skills?|technologies)\b/.test(i) ||
-                       i === 'skills' || i === 'technologies',
-        },
-        {
-            name: 'nav_certifications',
-            priority: 10,
-            test: i => /\b(go|take|navigate|scroll|show|open)\b.*\bcertif/.test(i) ||
-                       i === 'certifications',
-        },
-        {
-            name: 'nav_achievements',
-            priority: 10,
-            test: i => /\b(go|take|navigate|scroll|show|open)\b.*\bachieve/.test(i) ||
-                       i === 'achievements',
-        },
-        {
-            name: 'nav_projects',
-            priority: 10,
-            test: i => /\b(go|take|navigate|scroll|show|open)\b.*\bproject/.test(i) ||
-                       /\b(show|take)\b.*\b(work|built|developed)\b/.test(i) ||
-                       i === 'projects',
-        },
-        {
-            name: 'nav_contact',
-            priority: 10,
-            test: i => /\b(go|take|navigate|scroll|show|open)\b.*\bcontact\b/.test(i) ||
-                       i === 'contact',
-        },
-
-        // ---- SPECIFIC PROJECT QUESTIONS ----
-        {
-            name: 'project_neuroshield',
-            priority: 9,
-            test: i => anyWord(i, ['neuroshield', 'brainwave', 'eeg', 'cognitive intrusion']),
-        },
-        {
-            name: 'project_email_firewall',
-            priority: 9,
-            test: i => anyWord(i, ['email firewall', 'zero-trust', 'zero trust', 'phishing firewall', 'ai email', 'ai firewall']),
-        },
-        {
-            name: 'project_voice_monitoring',
-            priority: 9,
-            test: i => anyWord(i, ['voice monitoring', 'activity classification', 'ambient sound']),
-        },
-        {
-            name: 'project_voice_biometrics',
-            priority: 9,
-            test: i => anyWord(i, ['voice biometric', 'emotion detection', 'speaker identification', 'voice auth']),
-        },
-        {
-            name: 'project_health',
-            priority: 9,
-            test: i => anyWord(i, ['health monitor', 'vitals', 'wearable data', 'health dashboard']),
-        },
-        {
-            name: 'project_owasp',
-            priority: 9,
-            test: i => anyWord(i, ['owasp', 'password strength', 'password test']),
-        },
-        {
-            name: 'project_theft',
-            priority: 9,
-            test: i => anyWord(i, ['theft detection', 'theft', 'unauthorized movement']),
-        },
-        {
-            name: 'project_bus',
-            priority: 9,
-            test: i => anyWord(i, ['bus reservation', 'bus booking', 'seat selection']),
-        },
-        {
-            name: 'project_car_racing',
-            priority: 9,
-            test: i => anyWord(i, ['car racing', 'car game', 'racing game']),
-        },
-
-        // ---- INFO INTENTS ----
-        {
-            name: 'about',
-            priority: 8,
-            test: i => anyWord(i, ['who is joshua', 'introduce yourself', 'who are you', 'tell me about joshua',
-                                   'what does joshua do', 'overview of joshua', 'give me an overview', 'professional profile',
-                                   'introduce joshua', 'who is he', 'about joshua']),
-        },
-        {
-            name: 'education',
-            priority: 8,
-            test: i => anyWord(i, ['what did he study', 'what did joshua study', 'where did he study',
-                                   'tell me about his education', "joshua's education", 'his degree',
-                                   'his university', 'christ university', 'b.tech', 'btech', 'bachelor',
-                                   'computer science degree', 'cybersecurity degree', 'his studies', 'honours']),
-        },
-        {
-            name: 'internship',
-            priority: 8,
-            test: i => anyWord(i, ['internship', 'intern', 'ad infocom', 'nagpur']),
-        },
-        {
-            name: 'employment',
-            priority: 8,
-            test: i => anyWord(i, ['work experience', 'where has he worked', 'his job', 'all med equipment',
-                                   'full stack engineer', 'devops', 'chicago', 'employment', 'current job',
-                                   'where does he work', 'his employer', 'professional experience', 'current role']),
-        },
-        {
-            name: 'experience_general',
-            priority: 7,
-            test: i => anyWord(i, ['experience', 'his work', 'professional background']),
-        },
-        {
-            name: 'skills_general',
-            priority: 8,
-            test: i => anyWord(i, ['what are his skills', 'technical skills', 'what technologies', 'what tools',
-                                   'skill set', 'his skill', 'what can he do', 'what does he know',
-                                   'programming languages', 'coding languages', 'what languages', 'his languages',
-                                   'frontend', 'backend', 'database', 'soft skills', 'technologies he uses']),
-        },
-        {
-            name: 'skills_aws',
-            priority: 9,
-            test: i => anyWord(i, ['aws', 'amazon web services', 'cloud services', 'does he know aws']),
-        },
-        {
-            name: 'skills_mongodb',
-            priority: 9,
-            test: i => /\b(mongodb|mongo)\b/.test(i) && !anyWord(i, ['certification', 'certif', 'certificate']),
-        },
-        {
-            name: 'skills_python',
-            priority: 9,
-            test: i => /\bpython\b/.test(i) && !anyWord(i, ['certification', 'certif']),
-        },
-        {
-            name: 'projects_general',
-            priority: 8,
-            test: i => anyWord(i, ['show me the projects', 'what has joshua developed', 'his projects',
-                                   "joshua's projects", 'what projects', 'list projects', 'show projects',
-                                   'what has he built', 'what has he made', 'what has he created']),
-        },
-        {
-            name: 'projects_iot',
-            priority: 9,
-            test: i => anyWord(i, ['iot project', 'internet of things project', 'his iot']),
-        },
-        {
-            name: 'projects_cybersecurity',
-            priority: 9,
-            test: i => anyWord(i, ['cybersecurity project', 'security project', 'hacking project']),
-        },
-        {
-            name: 'projects_ai',
-            priority: 9,
-            test: i => anyWord(i, ['ai project', 'machine learning project', 'ml project', 'artificial intelligence project']),
-        },
-        {
-            name: 'certifications_general',
-            priority: 8,
-            test: i => anyWord(i, ['certifications', 'certificates', 'show certs', 'his certs',
-                                   "joshua's certifications", 'what certifications', 'list certifications',
-                                   'certified', 'credentials']),
-        },
-        {
-            name: 'certifications_aws',
-            priority: 9,
-            test: i => anyWord(i, ['aws certification', 'aws cert', 'amazon certification', 'cloud foundation cert']),
-        },
-        {
-            name: 'certifications_mongodb',
-            priority: 9,
-            test: i => anyWord(i, ['mongodb certification', 'mongodb cert', 'mongo cert', 'mongodb certificates']),
-        },
-        {
-            name: 'certifications_cisco',
-            priority: 9,
-            test: i => anyWord(i, ['cisco certification', 'cisco cert', 'cisco certificate', 'ethical hacker cert',
-                                   'cybersecurity cert', 'endpoint security cert']),
-        },
-        {
-            name: 'certifications_infosys',
-            priority: 9,
-            test: i => anyWord(i, ['infosys certification', 'infosys cert', 'springboard cert', 'infosys ai']),
-        },
-        {
-            name: 'certifications_nptel',
-            priority: 9,
-            test: i => anyWord(i, ['nptel', 'iit kharagpur', 'nptel iot']),
-        },
-        {
-            name: 'achievements',
-            priority: 8,
-            test: i => anyWord(i, ['achievements', 'achievement', 'volleyball', 'cisce', 'kerala', 'champion',
-                                   'extracurricular', 'extra curricular', 'sports', 'awards']),
-        },
-        {
-            name: 'contact',
-            priority: 8,
-            test: i => anyWord(i, ['contact', 'email', 'reach him', 'reach joshua', 'get in touch',
-                                   'how to contact', 'contact details', 'linkedin', 'github', 'his email',
-                                   "joshua's email", 'connect with joshua']),
-        },
-        {
-            name: 'iot_general',
-            priority: 7,
-            test: i => anyWord(i, ['iot', 'internet of things', 'iot specialist', 'iot work']),
-        },
-        {
-            name: 'cybersecurity_general',
-            priority: 7,
-            test: i => anyWord(i, ['cybersecurity', 'cyber security', 'ethical hacking', 'ethical hacker',
-                                   'penetration testing', 'pentest', 'infosec', 'information security']),
-        },
-        {
-            name: 'ai_general',
-            priority: 7,
-            test: i => anyWord(i, ['artificial intelligence', 'machine learning', 'deep learning', 'nlp',
-                                   'natural language processing', 'ai work', 'ml work', 'ai skills']),
-        },
-
-        // ---- SALARY / PERSONAL INFO (graceful decline) ----
+        /* ---- STRICT PRIVACY / OUT-OF-SCOPE BOUNDARIES ---- */
         {
             name: 'salary',
-            priority: 10,
-            test: i => anyWord(i, ['salary', 'wage', 'pay', 'income', 'compensation', 'earn', 'how much']),
+            priority: 30,
+            test: i => /\b(salary|wage|wages|pay rate|income|compensation|how much does (he|joshua) earn|how much is (he|joshua) paid)\b/.test(i)
         },
         {
             name: 'personal_info',
-            priority: 10,
-            test: i => anyWord(i, ['age', 'birthday', 'phone number', 'address', 'personal', 'family', 'girlfriend', 'boyfriend']),
+            priority: 30,
+            test: i => /\b(age|birthday|birth date|dob|phone number|mobile number|home address|girlfriend|boyfriend|marital|wife|husband|married|religion|caste)\b/.test(i)
         },
+
+        /* ---- EXPLICIT NAVIGATION ---- */
+        { name: 'nav_home',           priority: 25, test: i => /\b(go to|take me to|navigate to|open)\s+home\b/.test(i) || i === 'home' },
+        { name: 'nav_about',          priority: 25, test: i => /\b(go to|take me to|navigate to|open)\s+about\b/.test(i) || i === 'about' },
+        { name: 'nav_education',      priority: 25, test: i => /\b(go to|take me to|navigate to|open)\s+(education|degree|studies)\b/.test(i) },
+        { name: 'nav_experience',     priority: 25, test: i => /\b(go to|take me to|navigate to|open)\s+(experience)\b/.test(i) },
+        { name: 'nav_skills',         priority: 25, test: i => /\b(go to|take me to|navigate to|open)\s+(skills|technologies)\b/.test(i) },
+        { name: 'nav_certifications', priority: 25, test: i => /\b(go to|take me to|navigate to|open)\s+(certifications?|certificates?)\b/.test(i) },
+        { name: 'nav_achievements',   priority: 25, test: i => /\b(go to|take me to|navigate to|open)\s+(achievements?|extracurricular)\b/.test(i) },
+        { name: 'nav_projects',       priority: 25, test: i => /\b(go to|take me to|navigate to|open)\s+projects?\b/.test(i) },
+        { name: 'nav_contact',        priority: 25, test: i => /\b(go to|take me to|navigate to|open)\s+contact\b/.test(i) },
+
+        /* ---- SPECIFIC PROJECTS ---- */
+        { name: 'project_neuroshield',      priority: 22, test: i => /\b(neuroshield|brainwave|eeg|cognitive intrusion)\b/.test(i) },
+        { name: 'project_email_firewall',   priority: 22, test: i => /\b(email firewall|zero trust email|zero-trust email|ai email firewall|phishing firewall)\b/.test(i) },
+        { name: 'project_voice_monitoring', priority: 22, test: i => /\b(voice monitoring|activity classification|ambient sound)\b/.test(i) },
+        { name: 'project_voice_biometrics', priority: 22, test: i => /\b(voice biometric|voice biometrics|emotion detection|speaker identification)\b/.test(i) },
+        { name: 'project_health',           priority: 22, test: i => /\b(health monitor|vitals dashboard|wearable data)\b/.test(i) },
+        { name: 'project_owasp',            priority: 22, test: i => /\b(owasp|password strength|password entropy)\b/.test(i) },
+        { name: 'project_theft',            priority: 22, test: i => /\b(theft detection|unauthorized movement)\b/.test(i) },
+        { name: 'project_bus',              priority: 22, test: i => /\b(bus reservation|bus booking|online bus)\b/.test(i) },
+        { name: 'project_car_racing',       priority: 22, test: i => /\b(car racing|racing game|2d racing)\b/.test(i) },
+
+        /* ---- SPECIFIC CERTIFICATIONS (Must precede general and skills) ---- */
+        { name: 'certifications_iot',           priority: 21, test: i => /\b(iot|internet of things)\s+(certs?|certifications?|certificates?)\b|\b(nptel|iit kharagpur cert|digital transformation cert)\b/.test(i) },
+        { name: 'certifications_cybersecurity', priority: 21, test: i => /\b(cybersecurity|cyber security|security|ethical hacker|endpoint security|junior cybersecurity analyst)\s+(certs?|certifications?|certificates?)\b/.test(i) },
+        { name: 'certifications_aws',           priority: 21, test: i => /\b(aws|amazon)\s+(certs?|certifications?|certificates?)\b|\b(cloud foundations? cert|data pipeline cert)\b/.test(i) },
+        { name: 'certifications_mongodb',       priority: 21, test: i => /\b(mongodb|mongo)\s+(certs?|certifications?|certificates?)\b/.test(i) },
+        { name: 'certifications_cisco',         priority: 21, test: i => /\bcisco\s+(certs?|certifications?|certificates?)\b/.test(i) },
+        { name: 'certifications_infosys',       priority: 21, test: i => /\binfosys\s+(certs?|certifications?|certificates?)\b|\bspringboard cert\b/.test(i) },
+
+        /* ---- SPECIFIC SKILLS ---- */
+        { name: 'skills_docker',      priority: 18, test: i => /\bdocker\b/.test(i) },
+        { name: 'skills_devops',      priority: 18, test: i => /\b(devops|ci cd|pipeline automation|infrastructure networking)\b/.test(i) },
+        { name: 'skills_aws',         priority: 18, test: i => /\baws\b/.test(i) },
+        { name: 'skills_mongodb',     priority: 18, test: i => /\b(mongodb|mongo)\b/.test(i) },
+        { name: 'skills_python',      priority: 18, test: i => /\bpython\b/.test(i) },
+        { name: 'skills_frameworks',  priority: 18, test: i => /\b(frameworks?|react|vue|express|django|spring boot)\b/.test(i) },
+        { name: 'skills_databases',   priority: 18, test: i => /\b(databases?|postgresql|mysql|redis)\b/.test(i) },
+        { name: 'skills_programming', priority: 18, test: i => /\b(programming languages?|coding languages?|what languages?|which languages?)\b/.test(i) },
+
+        /* ---- INTERNSHIPS — PRECISE DISTINCTION ---- */
+        {
+            name: 'internship_ai',
+            priority: 17,
+            test: i => /\b(ai internship|ml internship|artificial intelligence intern|machine learning intern|ai intern|pneumonia detection|medical image|2026 internship|second internship|latest internship)\b/.test(i)
+        },
+        {
+            name: 'internship_cyber',
+            priority: 17,
+            test: i => /\b(cybersecurity internship|cyber security internship|security analyst intern|cyber analyst|2025 internship|first internship)\b/.test(i)
+        },
+        {
+            name: 'internship_adinfocom',
+            priority: 16,
+            test: i => /\b(ad infocom|infocom systems|infocom|both internships|all internships)\b/.test(i)
+        },
+        {
+            name: 'internship_general',
+            priority: 15,
+            test: i => /\b(internship|internships|intern)\b/.test(i)
+        },
+
+        /* ---- SPECIFIC DOMAIN EXPERIENCE ---- */
+        {
+            name: 'ai_experience',
+            priority: 16,
+            test: i => /\b(ai experience|ml experience|machine learning experience|experience in ai|have ai experience)\b/.test(i)
+        },
+        {
+            name: 'cybersecurity_experience',
+            priority: 16,
+            test: i => /\b(cybersecurity experience|security experience|experience in cybersecurity|have cybersecurity experience)\b/.test(i)
+        },
+
+        /* ---- EMPLOYMENT ---- */
+        {
+            name: 'employment',
+            priority: 15,
+            test: i => /\b(where does (he|joshua) work|who does (he|joshua) work for|where is (he|joshua) employed|current role|current job|employer|all med|all med equipment|chicago job|current position)\b/.test(i)
+        },
+
+        /* ---- GENERAL EXPERIENCE ---- */
+        {
+            name: 'experience_general',
+            priority: 14,
+            test: i => /\b(experience|work experience|professional experience|professional background|where has (he|joshua) worked|what experience)\b/.test(i)
+        },
+
+        /* ---- EDUCATION ---- */
+        {
+            name: 'education',
+            priority: 14,
+            test: i => /\b(education|educational|study|studied|degree|university|college|school|christ university|b\.?tech|bachelor|specialization|specialisation|honours|honors|qualification|studies)\b/.test(i)
+        },
+
+        /* ---- CATEGORIZED PROJECTS ---- */
+        { name: 'projects_iot',           priority: 13, test: i => /\biot projects?\b/.test(i) || /\b(internet of things projects?)\b/.test(i) },
+        { name: 'projects_cybersecurity', priority: 13, test: i => /\b(cybersecurity projects?|security projects?|hacking projects?)\b/.test(i) },
+        { name: 'projects_ai',            priority: 13, test: i => /\b(ai projects?|machine learning projects?|ml projects?)\b/.test(i) },
+
+        /* ---- GENERAL PROJECTS ---- */
+        {
+            name: 'projects_general',
+            priority: 12,
+            test: i => /\b(projects?|portfolio items?|what has (he|joshua) developed|what has (he|joshua) built|what has (he|joshua) made|explore projects|show projects)\b/.test(i)
+        },
+
+        /* ---- GENERAL SKILLS ---- */
+        {
+            name: 'skills_general',
+            priority: 12,
+            test: i => /\b(skills?|technologies?|tech stack|tools?|what can (he|joshua) do|what does (he|joshua) know|technical expertise)\b/.test(i)
+        },
+
+        /* ---- GENERAL CERTIFICATIONS ---- */
+        {
+            name: 'certifications_general',
+            priority: 12,
+            test: i => /\b(certifications?|certificates?|credentials?|show certs|what certs|certified)\b/.test(i)
+        },
+
+        /* ---- ACHIEVEMENTS ---- */
+        {
+            name: 'achievements',
+            priority: 12,
+            test: i => /\b(achievements?|volleyball|cisce|kerala|champion|championship|extracurricular|extra curricular|sports|awards?)\b/.test(i)
+        },
+
+        /* ---- CONTACT ---- */
+        {
+            name: 'contact',
+            priority: 12,
+            test: i => /\b(contact|email|reach (him|joshua)|get in touch|how to contact|contact details|linkedin|github|connect)\b/.test(i)
+        },
+
+        /* ---- ABOUT / PROFILE ---- */
+        {
+            name: 'about',
+            priority: 10,
+            test: i => /\b(who is joshua|introduce joshua|tell me about joshua|about joshua|introduce yourself|who are you|overview of joshua|tell me about him|who is he|what does joshua do|give me an overview)\b/.test(i)
+        },
+
+        /* ---- BROAD DOMAIN TOPICS ---- */
+        { name: 'iot_general',           priority: 8, test: i => /\b(iot|internet of things)\b/.test(i) },
+        { name: 'cybersecurity_general', priority: 8, test: i => /\b(cybersecurity|ethical hacking|infosec)\b/.test(i) },
+        { name: 'ai_general',            priority: 8, test: i => /\b(artificial intelligence|machine learning|deep learning|nlp)\b/.test(i) },
 
     ].sort((a, b) => b.priority - a.priority);
 
@@ -468,196 +411,273 @@
     }
 
     /* ============================================================
-       RESPONSE GENERATOR
+       RESPONSE BUILDER
        ============================================================ */
-    function buildResponse(intent, rawInput) {
+    function buildResponse(intent) {
         switch (intent) {
 
-            /* ---- NAVIGATION ---- */
+            /* Navigation & Actions */
             case 'nav_home':
                 navigate('home');
                 return 'Taking you to the top of the page!';
+
             case 'nav_about':
                 navigate('about');
                 return 'Navigating to the About section.';
+
             case 'nav_education':
                 navigate('education');
                 return 'Scrolling to the Education & Internship section.';
+
             case 'nav_experience':
                 navigate('experience');
-                return 'Opening the Experience page.';
+                return 'Opening the Experience page, which includes Skills & Technologies, Certifications, and Extracurricular Achievements.';
+
             case 'nav_skills':
                 navigate('skills');
-                return 'Taking you to Skills & Technologies.';
+                return 'Taking you to Skills & Technologies.\n\n' + formatSkills();
+
             case 'nav_certifications':
                 navigate('certifications');
-                return 'Navigating to Certifications & Achievements.';
+                return 'Navigating to Certifications & Achievements.\n\nJoshua holds 31 verified certifications across Cisco, MongoDB, AWS, Infosys, NPTEL, Simplilearn, Cognitive Class, Coursera, and Skillsoft.';
+
             case 'nav_achievements':
                 navigate('achievements');
-                return 'Taking you to Extra Curricular Achievements.';
+                return 'Taking you to Extra Curricular Achievements.\n\n' + KB.achievements;
+
             case 'nav_projects':
                 navigate('projects');
-                return 'Navigating to the Projects section!';
+                return 'Navigating to the Projects section!\n\n' + formatProjects();
+
             case 'nav_contact':
                 navigate('contact');
-                return 'Taking you to the Contact section.';
+                return 'Taking you to the Contact section.\n\n📧 Email: ' + KB.contact.email;
 
-            /* ---- SPECIFIC PROJECTS ---- */
+            /* Specific Projects */
             case 'project_neuroshield':
-                return `NeuroShield is a biometric security system Joshua developed. It uses EEG-style brainwave signals to authenticate users by modelling their unique brainwave patterns, and can also detect abnormal cognitive states that may indicate coercion or intrusion. ${linkHint('projects')}`;
-            case 'project_email_firewall':
-                return `The Zero-Trust AI Email Firewall is an AI-driven email security layer that applies zero-trust principles to detect phishing, malicious links, and anomalous sender behaviour before messages reach the inbox. ${linkHint('projects')}`;
-            case 'project_voice_monitoring':
-                return `The Voice Monitoring and Activity Classification System is an audio analytics pipeline that continuously monitors ambient sound, extracts features, and classifies activities in real time — built for safety and automation use cases. ${linkHint('projects')}`;
-            case 'project_voice_biometrics':
-                return `The Voice Biometrics with Emotion Detection system combines speaker identification with sentiment analysis to create secure, human-aware authentication interfaces. ${linkHint('projects')}`;
-            case 'project_health':
-                return `The Health Monitor is a dashboard that aggregates sensor and wearable data to track vital signs, visualise trends, and surface early warning signals for health anomalies. ${linkHint('projects')}`;
-            case 'project_owasp':
-                return `The OWASP Password Strength Testing tool is a responsive web application that evaluates password entropy in real time, highlights weaknesses, and helps users build stronger credentials. ${linkHint('projects')}`;
-            case 'project_theft':
-                return `The Theft Detection System is an embedded security solution that fuses sensor inputs and rule-based logic to detect unauthorised movement and trigger instant alerts. ${linkHint('projects')}`;
-            case 'project_bus':
-                return `The Online Bus Reservation System is a full-stack web application for booking and managing bus reservations, featuring real-time seat selection and secure payment integration. ${linkHint('projects')}`;
-            case 'project_car_racing':
-                return `The Car Racing Game is a 2D browser game with dynamic obstacles, scoring, and smooth controls, built using modern game development frameworks. ${linkHint('projects')}`;
+                navigate('projects');
+                return 'NeuroShield is a biometric security system Joshua developed. It uses EEG-style brainwave signals to authenticate users by modelling their unique brainwave patterns, and detects abnormal cognitive states that may indicate coercion or intrusion.';
 
-            /* ---- INTRO / ABOUT ---- */
+            case 'project_email_firewall':
+                navigate('projects');
+                return 'The Zero-Trust AI Email Firewall is an AI-driven email security layer that applies zero-trust principles to detect phishing, malicious links, and anomalous sender behavior before messages reach the inbox.';
+
+            case 'project_voice_monitoring':
+                navigate('projects');
+                return 'The Voice Monitoring and Activity Classification System is an audio analytics pipeline that continuously monitors ambient sound, extracts features, and classifies activities in real time for safety and automation use cases.';
+
+            case 'project_voice_biometrics':
+                navigate('projects');
+                return 'The Voice Biometrics with Emotion Detection system combines speaker identification with sentiment analysis to create secure, human-aware authentication interfaces.';
+
+            case 'project_health':
+                navigate('projects');
+                return 'The Health Monitor is a dashboard that aggregates sensor and wearable data to track vital signs, visualise trends, and surface early warning signals for anomalies.';
+
+            case 'project_owasp':
+                navigate('projects');
+                return 'The OWASP Password Strength Testing tool is a responsive web application that evaluates password entropy in real time, highlights weaknesses, and helps users build stronger credentials.';
+
+            case 'project_theft':
+                navigate('projects');
+                return 'The Theft Detection System is an embedded security solution that fuses sensor inputs and rule-based logic to detect unauthorized movement and trigger instant alerts.';
+
+            case 'project_bus':
+                navigate('projects');
+                return 'The Online Bus Reservation System is a full-stack web application for booking and managing bus reservations, featuring real-time seat selection and secure payment integration.';
+
+            case 'project_car_racing':
+                navigate('projects');
+                return 'The Car Racing Game is a 2D browser game with dynamic obstacles, scoring, and smooth controls, built using modern game development frameworks.';
+
+            /* About */
             case 'about':
                 navigate('about');
-                return KB.about + ' Would you like to know about his education, experience, or projects?';
+                return KB.about + '\n\nWould you like to know about his education, experience, or projects?';
 
-            /* ---- EDUCATION ---- */
+            /* Education */
             case 'education':
                 navigate('education');
                 return KB.education;
 
-            /* ---- INTERNSHIP ---- */
-            case 'internship':
+            /* Internships — Separate & Distinct */
+            case 'internship_ai':
                 navigate('education');
-                return KB.internship;
+                return KB.internship_ai;
 
-            /* ---- EMPLOYMENT ---- */
+            case 'internship_cyber':
+                navigate('education');
+                return KB.internship_cyber;
+
+            case 'internship_adinfocom':
+            case 'internship_general':
+                navigate('education');
+                return KB.internship_both;
+
+            /* Specific Domain Experience */
+            case 'ai_experience':
+                return 'Yes! Joshua has practical AI/ML experience:\n\n• Artificial Intelligence Intern at AD Infocom Systems (April 2026 – May 2026): Worked on a Pneumonia Detection project applying machine learning to medical image analysis and disease classification.\n• AI Projects: Zero-Trust AI Email Firewall, NeuroShield (EEG-based authentication), Voice Biometrics with Emotion Detection, and Voice Monitoring & Activity Classification.\n• Certifications: Infosys Artificial Intelligence Foundation, Introduction to AI, Deep Learning, and NLP.';
+
+            case 'cybersecurity_experience':
+                return 'Yes! Joshua specializes heavily in cybersecurity:\n\n• Honours in Cybersecurity & Ethical Hacking at CHRIST (Deemed to be University).\n• Cyber Security Analyst Intern at AD Infocom Systems (April 2025 – May 2025): Worked on real-world cybersecurity projects and risk assessments.\n• Cybersecurity Projects: Zero-Trust AI Email Firewall, NeuroShield Cognitive Intrusion Detection, and OWASP Password Strength Testing.\n• Certifications: Cisco Ethical Hacker (2x), Junior Cybersecurity Analyst Career Path, Endpoint Security, and Introduction to Cybersecurity.';
+
+            /* Employment */
             case 'employment':
-                navigate('experience');
+                navigate('education');
                 return KB.employment;
 
-            /* ---- EXPERIENCE GENERAL ---- */
+            /* General Experience */
             case 'experience_general':
-                navigate('experience');
-                return `Joshua has two key professional experiences: (1) ${KB.internship} (2) ${KB.employment}`;
+                navigate('education');
+                return 'Joshua has a range of professional experiences:\n\n' +
+                    '📌 ' + KB.internship_cyber + '\n\n' +
+                    '📌 ' + KB.internship_ai + '\n\n' +
+                    '📌 ' + KB.employment;
 
-            /* ---- SKILLS ---- */
+            /* Specific Skills */
+            case 'skills_docker':
+                navigate('skills');
+                return 'Yes! Docker is one of Joshua\'s core tools & platforms skills for containerization and DevOps workflows. In his role as Full Stack Engineer & DevOps Administrator at All Med Equipment, he utilizes Docker alongside Git, AWS, and Jenkins.';
+
+            case 'skills_devops':
+                navigate('skills');
+                return 'Joshua\'s DevOps skills include Docker, Git, AWS, Jenkins, automated deployment workflows, and infrastructure networking. As Full Stack Engineer & DevOps Administrator at All Med Equipment in Chicago, he manages production deployments and platform reliability.';
+
+            case 'skills_aws':
+                navigate('skills');
+                return 'Yes! AWS is one of Joshua\'s core platforms. He holds AWS Academy Graduate certifications in Cloud Foundations and Cloud Data Pipeline Builder.';
+
+            case 'skills_mongodb':
+                navigate('skills');
+                return 'Joshua works with MongoDB as one of his core databases. He holds 9 MongoDB certifications covering data modelling, CRUD operations, aggregation, indexes, and transactions.';
+
+            case 'skills_python':
+                navigate('skills');
+                return 'Yes, Python is one of Joshua\'s primary programming languages. He also completed a Python programming certification from Christ University, Bangalore.';
+
+            case 'skills_frameworks':
+                navigate('skills');
+                return 'Joshua works with modern frameworks across the stack:\n• Frontend: React, Vue.js\n• Backend: Express (Node.js), Django (Python), Spring Boot (Java)';
+
+            case 'skills_databases':
+                navigate('skills');
+                return 'Joshua works with MongoDB, PostgreSQL, MySQL, and Redis. He also holds 9 MongoDB certifications covering data modelling, CRUD operations, aggregation, indexes, and transactions.';
+
+            case 'skills_programming':
+                navigate('skills');
+                return 'Joshua\'s programming languages include JavaScript, Python, Java, and C++. He also holds a Python programming certification from Christ University.';
+
             case 'skills_general':
                 navigate('skills');
                 return formatSkills();
-            case 'skills_aws':
-                navigate('skills');
-                return 'Yes! AWS is one of Joshua's tools & platforms skills. He also holds AWS Academy Graduate certifications in Cloud Foundations and Cloud Data Pipeline Builder.';
-            case 'skills_mongodb':
-                navigate('skills');
-                return 'Joshua works with MongoDB as one of his core databases. He also holds multiple MongoDB certifications covering data modelling, CRUD operations, aggregation, indexes, transactions, and more.';
-            case 'skills_python':
-                navigate('skills');
-                return 'Yes, Python is one of Joshua's programming languages. He also completed a Python programming certification from Christ University, Bangalore.';
 
-            /* ---- PROJECTS ---- */
-            case 'projects_general':
-                navigate('projects');
-                return formatProjects(null);
+            /* Categorized Projects */
             case 'projects_iot':
                 navigate('projects');
-                return 'Joshua's IoT-related projects include: Voice Monitoring & Activity Classification System, Theft Detection System, Health Monitor, and Voice Biometrics with Emotion Detection. He also holds the NPTEL Introduction to Internet of Things certification.';
+                return 'Joshua\'s IoT-related projects include:\n• Voice Monitoring & Activity Classification System\n• Theft Detection System\n• Health Monitor\n• Voice Biometrics with Emotion Detection\n\nHe also holds the NPTEL Introduction to Internet of Things certification and completed an AI internship involving IoT skills.';
+
             case 'projects_cybersecurity':
                 navigate('projects');
-                return 'Joshua's cybersecurity projects include: Zero-Trust AI Email Firewall, NeuroShield Brainwave-Pattern Authentication, OWASP Password Strength Testing, and Theft Detection System.';
+                return 'Joshua\'s cybersecurity projects include:\n• Zero-Trust AI Email Firewall\n• NeuroShield Brainwave-Pattern Authentication & Cognitive Intrusion Detection\n• OWASP Password Strength Testing\n• Theft Detection System';
+
             case 'projects_ai':
                 navigate('projects');
-                return 'Joshua's AI/ML-related projects include: Zero-Trust AI Email Firewall, Voice Monitoring & Activity Classification System, Voice Biometrics with Emotion Detection, and NeuroShield.';
+                return 'Joshua\'s AI/ML projects include:\n• Zero-Trust AI Email Firewall\n• NeuroShield Brainwave-Pattern Authentication\n• Voice Monitoring & Activity Classification System\n• Voice Biometrics with Emotion Detection\n\n(He also completed an AI/ML internship at AD Infocom Systems focusing on medical image analysis for Pneumonia Detection.)';
 
-            /* ---- CERTIFICATIONS ---- */
-            case 'certifications_general':
+            case 'projects_general':
+                navigate('projects');
+                return formatProjects();
+
+            /* Specific Certifications */
+            case 'certifications_iot':
                 navigate('certifications');
-                return 'Joshua holds certifications from Infosys, AWS, MongoDB, Cisco, NPTEL, Simplilearn, Cognitive Class, Coursera, Skillsoft, Infosys Springboard, and Christ University. I've navigated to the full list for you.';
+                return 'Joshua holds the following IoT certifications:\n• Introduction to Internet of Things — NPTEL (in collaboration with IIT Kharagpur, January 2025)\n• Introduction to IoT and Digital Transformation — Cisco Networking Academy (June 2025)\n\nHis AI internship at AD Infocom Systems also encompassed IoT competencies.';
+
+            case 'certifications_cybersecurity':
+                navigate('certifications');
+                return 'Joshua holds multiple cybersecurity certifications:\n• Cisco Ethical Hacker (February 2025) — 2 credentials\n• Cisco Junior Cybersecurity Analyst Career Path (February 2025)\n• Cisco Endpoint Security (February 2025)\n• Cisco Introduction to Cybersecurity (February 2025)\n\nHe is also pursuing Honours in Cybersecurity & Ethical Hacking at Christ University and completed a Cyber Security Analyst internship at AD Infocom Systems.';
+
             case 'certifications_aws':
                 navigate('certifications');
-                return 'Joshua's AWS certifications include:\n• ' + KB.certifications.aws.join('\n• ');
+                return 'Joshua\'s AWS certifications:\n• ' + KB.certifications.aws.join('\n• ');
+
             case 'certifications_mongodb':
                 navigate('certifications');
-                return 'Joshua's MongoDB certifications include:\n• ' + KB.certifications.mongodb.join('\n• ');
+                return 'Joshua\'s MongoDB certifications (9 credentials):\n• ' + KB.certifications.mongodb.join('\n• ');
+
             case 'certifications_cisco':
                 navigate('certifications');
-                return 'Joshua's Cisco certifications include:\n• ' + KB.certifications.cisco.join('\n• ');
+                return 'Joshua\'s Cisco certifications:\n• ' + KB.certifications.cisco.join('\n• ');
+
             case 'certifications_infosys':
                 navigate('certifications');
-                return 'Joshua's Infosys certifications include:\n• ' + KB.certifications.infosys.join('\n• ');
-            case 'certifications_nptel':
-                navigate('certifications');
-                return 'Joshua has: ' + KB.certifications.nptel.join('. ') + '. The course covered IoT architecture, communication protocols, security concerns, and practical IoT solution development.';
+                return 'Joshua\'s Infosys certifications:\n• ' + KB.certifications.infosys.join('\n• ');
 
-            /* ---- ACHIEVEMENTS ---- */
+            case 'certifications_general':
+                navigate('certifications');
+                return 'Joshua holds ' + KB.certifications.cisco.length + ' Cisco certs, ' + KB.certifications.mongodb.length + ' MongoDB certs, ' + KB.certifications.aws.length + ' AWS certs, plus certifications from Infosys, NPTEL, Simplilearn, Cognitive Class, Coursera, Skillsoft, Infosys Springboard, and Christ University — 31 total. I\'ve navigated to the full list for you.';
+
+            /* Achievements */
             case 'achievements':
                 navigate('achievements');
                 return KB.achievements;
 
-            /* ---- CONTACT ---- */
+            /* Contact */
             case 'contact':
                 navigate('contact');
-                return `You can reach Joshua at:\n📧 Email: ${KB.contact.email}\n💼 LinkedIn: linkedin.com/in/joshua-chacko-george-736123289\n💻 GitHub: github.com/JoshuaMac003`;
+                return 'You can reach Joshua at:\n📧 Email: ' + KB.contact.email + '\n💼 LinkedIn: linkedin.com/in/joshua-chacko-george-736123289\n💻 GitHub: github.com/JoshuaMac003';
 
-            /* ---- IoT GENERAL ---- */
+            /* Domain Knowledge */
             case 'iot_general':
-                return `Joshua is an IoT Specialist with practical projects including a Voice Monitoring System, Health Monitor, and Theft Detection System. He also holds the NPTEL Introduction to Internet of Things certification (with IIT Kharagpur) and the Cisco Introduction to IoT and Digital Transformation certification.`;
+                return 'Joshua is an IoT Specialist with practical projects including the Voice Monitoring & Activity Classification System, Health Monitor, and Theft Detection System. He holds the NPTEL Introduction to Internet of Things certification (with IIT Kharagpur) and the Cisco Introduction to IoT and Digital Transformation certification. His AI internship at AD Infocom Systems also listed IoT among its skills.';
 
-            /* ---- CYBERSECURITY GENERAL ---- */
             case 'cybersecurity_general':
-                return `Cybersecurity is a core focus for Joshua. He is pursuing Honours in Cybersecurity & Ethical Hacking at Christ University. He has completed Cisco certifications in Ethical Hacking, Endpoint Security, Junior Cybersecurity Analyst, and Introduction to Cybersecurity. His projects include the Zero-Trust AI Email Firewall, NeuroShield, and OWASP Password Strength Testing tool.`;
+                return 'Cybersecurity is a core focus for Joshua. He is pursuing Honours in Cybersecurity & Ethical Hacking at Christ University. He completed a Cyber Security Analyst Internship at AD Infocom Systems (2025) and holds Cisco certifications in Ethical Hacking, Endpoint Security, Junior Cybersecurity Analyst Career Path, and Introduction to Cybersecurity. His projects include the Zero-Trust AI Email Firewall, NeuroShield, and OWASP Password Strength Testing tool.';
 
-            /* ---- AI GENERAL ---- */
             case 'ai_general':
-                return `Joshua works with AI/ML in multiple projects: Zero-Trust AI Email Firewall, Voice Biometrics with Emotion Detection, Voice Monitoring & Activity Classification, and NeuroShield. He also holds Infosys certifications in Artificial Intelligence Foundation, Introduction to AI, Deep Learning, and NLP.`;
+                return 'Joshua works with AI/ML across multiple projects (Zero-Trust AI Email Firewall, Voice Biometrics with Emotion Detection, Voice Monitoring & Activity Classification, NeuroShield) and completed an AI & ML internship at AD Infocom Systems (April–May 2026) working on a Pneumonia Detection project. He also holds Infosys certifications in Artificial Intelligence Foundation, Introduction to AI, Deep Learning, and NLP.';
 
-            /* ---- SALARY / PRIVATE INFO ---- */
+            /* Polite Refusals (Strict Information Boundaries) */
             case 'salary':
-                return `I don't have that information in Joshua's portfolio at the moment. Salary and compensation details are not part of the public portfolio.`;
-            case 'personal_info':
-                return `That personal information isn't available in Joshua's portfolio. I can only share professional background, projects, skills, certifications, and contact details.`;
+                return 'Salary and compensation details are not part of the public portfolio. I\'m only able to share professional background, projects, skills, certifications, and contact information.';
 
-            /* ---- FALLBACK ---- */
+            case 'personal_info':
+                return 'That personal information isn\'t available in Joshua\'s portfolio. I can only share his professional background, projects, skills, certifications, and contact details.';
+
             default:
                 return null;
         }
     }
 
-    function linkHint(section) {
-        return `You can browse all projects in the Projects section — just say "Show me the projects" or click the button below.`;
-    }
-
     function formatSkills() {
         const s = KB.skills;
-        return [
-            `Joshua's technical skills:`,
-            `\n🖥️ Programming: ${s.programming.join(', ')}`,
-            `🎨 Frontend: ${s.frontend.join(', ')}`,
-            `⚙️ Backend: ${s.backend.join(', ')}`,
-            `🗄️ Databases: ${s.databases.join(', ')}`,
-            `🛠️ Tools & Platforms: ${s.tools.join(', ')}`,
-            `🤝 Soft Skills: ${s.soft.join(', ')}`,
-        ].join('\n');
+        return 'Joshua\'s technical skills:\n' +
+            '🖥️ Programming: ' + s.programming.join(', ') + '\n' +
+            '🎨 Frontend: '    + s.frontend.join(', ')    + '\n' +
+            '⚙️ Backend: '     + s.backend.join(', ')     + '\n' +
+            '🗄️ Databases: '   + s.databases.join(', ')   + '\n' +
+            '🛠️ Tools & Platforms: ' + s.tools.join(', ') + '\n' +
+            '🤝 Soft Skills: ' + s.soft.join(', ');
     }
 
-    function formatProjects(filterTag) {
-        const projects = filterTag
-            ? KB.projects.filter(p => p.tags.includes(filterTag))
-            : KB.projects;
-        return `Joshua has ${KB.projects.length} projects:\n` +
-            projects.map((p, i) => `${i + 1}. ${p.name}`).join('\n') +
+    function formatProjects() {
+        return 'Joshua has ' + KB.projects.length + ' projects:\n' +
+            KB.projects.map((p, i) => (i + 1) + '. ' + p.name).join('\n') +
             '\n\nAsk me about any specific project for details!';
     }
 
-    const OUT_OF_SCOPE = `I'm LEYA, Joshua's portfolio assistant. I can help you explore his education, experience, skills, projects, certifications, and contact information. I'm not able to help with general questions outside Joshua's portfolio.`;
+    /* Out of scope messages — verbatim as required by specification */
+    const OUT_OF_SCOPE = 'I\'m LEYA, Joshua\'s portfolio assistant. I can help you explore his education, experience, skills, projects, certifications, achievements, and contact information.';
 
-    const UNKNOWN_PORTFOLIO = `I don't have that information in Joshua's portfolio at the moment.`;
+    const UNKNOWN_PORTFOLIO = 'I don\'t have that information in Joshua\'s portfolio at the moment.';
+
+    const OFF_TOPIC_WORDS = [
+        'weather', 'news', 'sports score', 'politics', 'stock price', 'covid',
+        'recipe', 'joke', 'movie review', 'celebrity', 'capital of', 'president of',
+        'prime minister of', 'write code for me', 'translate this', 'solve this math',
+        'investment advice', 'bitcoin price', 'crypto price', 'medical advice',
+        'latest news', 'sports news', 'tell me a joke', 'what is the time',
+    ];
 
     function getResponse(userInput) {
         const trimmed = userInput.trim();
@@ -665,40 +685,34 @@
 
         const intent = detectIntent(trimmed);
         if (!intent) {
-            // Check if it's clearly off-topic
-            const norm = normalise(trimmed);
-            if (anyWord(norm, ['weather', 'news', 'sports', 'politics', 'stock', 'covid',
-                                'recipe', 'joke', 'movie', 'song', 'celebrity', 'capital of',
-                                'president', 'prime minister', 'help me code', 'write code for',
-                                'translate', 'math', 'calculate', 'doctor', 'medicine',
-                                'investment', 'bitcoin', 'crypto', 'salary', 'latest news'])) {
-                return OUT_OF_SCOPE;
-            }
+            if (anyWord(normalise(trimmed), OFF_TOPIC_WORDS)) return OUT_OF_SCOPE;
             return UNKNOWN_PORTFOLIO;
         }
 
-        const response = buildResponse(intent, trimmed);
-        return response || UNKNOWN_PORTFOLIO;
+        return buildResponse(intent) || UNKNOWN_PORTFOLIO;
+    }
+
+    function anyWord(input, words) {
+        return words.some(w => input.includes(w));
     }
 
     /* ============================================================
        UI STATE
        ============================================================ */
-    let isOpen         = false;
-    let voiceEnabled   = false;
-    let isSpeaking     = false;
-    let isListening    = false;
-    let recognition    = null;
-    let isSubmitting   = false;
+    let isOpen       = false;
+    let voiceEnabled = false;
+    let isListening  = false;
+    let isSubmitting = false;
+    let recognition  = null;
 
     /* ============================================================
-       DOM REFERENCES (resolved after DOMContentLoaded)
+       DOM REFERENCES
        ============================================================ */
     let launcher, panel, messagesEl, typingEl, suggestionsEl,
         inputEl, sendBtn, micBtn, micStatusEl,
-        voiceToggle, clearBtn, closeBtn;
+        voiceToggle, stopSpeechBtn, clearBtn, closeBtn;
 
-    function getEls() {
+    function resolveEls() {
         launcher      = document.getElementById('leya-launcher');
         panel         = document.getElementById('leya-panel');
         messagesEl    = document.getElementById('leya-messages');
@@ -709,6 +723,7 @@
         micBtn        = document.getElementById('leya-mic');
         micStatusEl   = document.getElementById('leya-mic-status');
         voiceToggle   = document.getElementById('leya-voice-toggle');
+        stopSpeechBtn = document.getElementById('leya-stop-speech');
         clearBtn      = document.getElementById('leya-clear');
         closeBtn      = document.getElementById('leya-close');
     }
@@ -717,40 +732,45 @@
        PANEL OPEN / CLOSE
        ============================================================ */
     function openPanel() {
+        resolveEls();
         if (!panel || !launcher) return;
+
         isOpen = true;
         panel.hidden = false;
+        panel.removeAttribute('hidden');
+        panel.style.display = 'flex';
         launcher.setAttribute('aria-expanded', 'true');
-        if (!messagesEl || messagesEl.children.length === 0) {
+
+        if (messagesEl && messagesEl.children.length === 0) {
             addBotMessage(
-                `Hi! I'm LEYA, Joshua's portfolio assistant. I can help you explore his education, professional experience, technical skills, projects, certifications, and contact information. What would you like to know?`
+                'Hi! I\'m LEYA, Joshua\'s portfolio assistant. I can help you explore his education, professional experience, technical skills, projects, certifications, and contact information. What would you like to know?'
             );
         }
-        setTimeout(() => inputEl && inputEl.focus(), 100);
+
+        setTimeout(() => { if (inputEl) inputEl.focus(); }, 150);
     }
 
     function closePanel() {
-        if (!panel || !launcher) return;
+        if (!panel) return;
         isOpen = false;
         panel.hidden = true;
-        launcher.setAttribute('aria-expanded', 'false');
+        panel.style.display = '';
+        if (launcher) launcher.setAttribute('aria-expanded', 'false');
         stopSpeaking();
         stopListening();
     }
 
     /* ============================================================
-       MESSAGE RENDERING
+       MESSAGE RENDERING (XSS-Safe)
        ============================================================ */
     function addBotMessage(text) {
-        if (!messagesEl) return;
+        if (!messagesEl) { resolveEls(); if (!messagesEl) return; }
         const div = document.createElement('div');
         div.className = 'leya-msg leya-msg-bot';
-        // Safe: pre (plain text), newlines → <br>
         div.textContent = text;
-        // Convert \n to line breaks safely
         div.innerHTML = div.innerHTML.replace(/\n/g, '<br>');
         messagesEl.appendChild(div);
-        scrollToBottom();
+        scrollBottom();
         if (voiceEnabled) speak(text);
     }
 
@@ -758,20 +778,21 @@
         if (!messagesEl) return;
         const div = document.createElement('div');
         div.className = 'leya-msg leya-msg-user';
-        div.textContent = text; // Safe: textContent, never innerHTML
+        div.textContent = text;
         messagesEl.appendChild(div);
-        scrollToBottom();
+        scrollBottom();
     }
 
-    function scrollToBottom() {
-        if (messagesEl) {
-            messagesEl.scrollTop = messagesEl.scrollHeight;
-        }
+    function scrollBottom() {
+        if (messagesEl) messagesEl.scrollTop = messagesEl.scrollHeight;
     }
 
     function showTyping() {
-        if (typingEl) typingEl.hidden = false;
-        scrollToBottom();
+        if (typingEl) {
+            typingEl.hidden = false;
+            typingEl.removeAttribute('hidden');
+        }
+        scrollBottom();
     }
 
     function hideTyping() {
@@ -782,24 +803,22 @@
        SEND / SUBMIT
        ============================================================ */
     function submitInput(text) {
-        const userText = (text || (inputEl ? inputEl.value : '')).trim();
+        const userText = (typeof text === 'string' ? text : (inputEl ? inputEl.value : '')).trim();
         if (!userText || isSubmitting) return;
 
         isSubmitting = true;
         if (inputEl) inputEl.value = '';
         addUserMessage(userText);
 
-        // Hide suggestions after first real interaction
         if (suggestionsEl) suggestionsEl.style.display = 'none';
 
         showTyping();
 
-        // Simulate minimal processing delay (feels natural)
-        const delay = 300 + Math.random() * 200;
+        const delay = 260 + Math.random() * 150;
         setTimeout(() => {
             hideTyping();
-            const response = getResponse(userText);
-            if (response) addBotMessage(response);
+            const resp = getResponse(userText);
+            if (resp) addBotMessage(resp);
             isSubmitting = false;
         }, delay);
     }
@@ -810,19 +829,41 @@
     function speak(text) {
         if (!window.speechSynthesis) return;
         stopSpeaking();
-        const utter = new SpeechSynthesisUtterance(text.replace(/<br\s*\/?>/gi, ' '));
+        const plainText = text.replace(/<br\s*\/?>/gi, '. ').replace(/[•📌]/g, '');
+        const utter = new SpeechSynthesisUtterance(plainText);
         utter.lang = 'en-US';
         utter.rate = 1;
-        utter.onstart = () => { isSpeaking = true; };
-        utter.onend   = () => { isSpeaking = false; };
-        utter.onerror = () => { isSpeaking = false; };
+
+        utter.onstart = () => {
+            if (stopSpeechBtn) {
+                stopSpeechBtn.hidden = false;
+                stopSpeechBtn.removeAttribute('hidden');
+                stopSpeechBtn.style.display = 'inline-flex';
+            }
+        };
+        utter.onend = () => {
+            if (stopSpeechBtn) {
+                stopSpeechBtn.hidden = true;
+                stopSpeechBtn.style.display = 'none';
+            }
+        };
+        utter.onerror = () => {
+            if (stopSpeechBtn) {
+                stopSpeechBtn.hidden = true;
+                stopSpeechBtn.style.display = 'none';
+            }
+        };
+
         window.speechSynthesis.speak(utter);
     }
 
     function stopSpeaking() {
-        if (window.speechSynthesis) {
-            window.speechSynthesis.cancel();
-            isSpeaking = false;
+        try {
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+        } catch (_) {}
+        if (stopSpeechBtn) {
+            stopSpeechBtn.hidden = true;
+            stopSpeechBtn.style.display = 'none';
         }
     }
 
@@ -833,7 +874,7 @@
 
     function startListening() {
         if (!SpeechRec) {
-            setMicStatus('Speech recognition is not supported in this browser. Please type your question.');
+            setMicStatus('Speech recognition is not supported in this browser. Please type your question.', true);
             return;
         }
         if (isListening) {
@@ -841,7 +882,13 @@
             return;
         }
 
-        recognition = new SpeechRec();
+        try {
+            recognition = new SpeechRec();
+        } catch (e) {
+            setMicStatus('Could not start speech recognition. Please type your question.', true);
+            return;
+        }
+
         recognition.lang = 'en-US';
         recognition.interimResults = false;
         recognition.maxAlternatives = 1;
@@ -851,34 +898,26 @@
             if (micBtn) micBtn.classList.add('leya-listening');
             setMicStatus('Listening… speak now.', true);
         };
-
         recognition.onresult = (e) => {
             const transcript = e.results[0][0].transcript;
-            if (inputEl) {
-                inputEl.value = transcript;
-                inputEl.focus();
-            }
-            setMicStatus(`Heard: "${transcript}"`, true);
+            if (inputEl) inputEl.value = transcript;
+            setMicStatus('Heard: "' + transcript + '"', true);
             setTimeout(() => submitInput(transcript), 300);
         };
-
         recognition.onerror = (e) => {
             let msg = 'Could not capture speech.';
-            if (e.error === 'not-allowed') msg = 'Microphone access was denied. Please allow microphone permissions and try again.';
-            else if (e.error === 'no-speech')  msg = 'No speech detected. Please try again.';
-            else if (e.error === 'network')    msg = 'Network error during speech recognition.';
+            if (e.error === 'not-allowed')    msg = 'Microphone access was denied. Please allow mic permissions and try again.';
+            else if (e.error === 'no-speech') msg = 'No speech detected. Please try again.';
+            else if (e.error === 'network')   msg = 'Network error during speech recognition.';
             setMicStatus(msg, true);
             stopListening();
         };
-
-        recognition.onend = () => {
-            stopListening();
-        };
+        recognition.onend = () => stopListening();
 
         try {
             recognition.start();
-        } catch (err) {
-            setMicStatus('Could not start speech recognition. Please type your question.');
+        } catch (e) {
+            setMicStatus('Could not start speech recognition.', true);
             stopListening();
         }
     }
@@ -893,10 +932,11 @@
         setTimeout(() => setMicStatus('', false), 2000);
     }
 
-    function setMicStatus(msg, show = true) {
+    function setMicStatus(msg, show) {
         if (!micStatusEl) return;
         micStatusEl.textContent = msg;
         micStatusEl.hidden = !show || !msg;
+        if (show && msg) micStatusEl.removeAttribute('hidden');
     }
 
     /* ============================================================
@@ -905,39 +945,48 @@
     function clearConversation() {
         if (messagesEl) messagesEl.innerHTML = '';
         if (suggestionsEl) suggestionsEl.style.display = '';
-        addBotMessage(`Hi! I'm LEYA, Joshua's portfolio assistant. I can help you explore his education, professional experience, technical skills, projects, certifications, and contact information. What would you like to know?`);
+        stopSpeaking();
+        addBotMessage(
+            'Hi! I\'m LEYA, Joshua\'s portfolio assistant. I can help you explore his education, professional experience, technical skills, projects, certifications, and contact information. What would you like to know?'
+        );
     }
 
     /* ============================================================
        EVENT WIRING
        ============================================================ */
+    let eventsWired = false;
+
     function wireEvents() {
+        if (eventsWired) return;
+
+        resolveEls();
         if (!launcher) return;
+
+        eventsWired = true;
 
         launcher.addEventListener('click', (e) => {
             e.stopPropagation();
             isOpen ? closePanel() : openPanel();
         });
 
-        if (closeBtn)  closeBtn.addEventListener('click', closePanel);
-        if (clearBtn)  clearBtn.addEventListener('click', clearConversation);
+        if (closeBtn) closeBtn.addEventListener('click', closePanel);
+
+        if (clearBtn) clearBtn.addEventListener('click', clearConversation);
+
+        if (stopSpeechBtn) stopSpeechBtn.addEventListener('click', stopSpeaking);
 
         if (voiceToggle) {
             voiceToggle.addEventListener('click', () => {
                 voiceEnabled = !voiceEnabled;
-                voiceToggle.setAttribute('aria-pressed', voiceEnabled);
+                voiceToggle.setAttribute('aria-pressed', String(voiceEnabled));
                 const icon = voiceToggle.querySelector('i');
-                if (icon) {
-                    icon.className = voiceEnabled ? 'fas fa-volume-high' : 'fas fa-volume-xmark';
-                }
-                voiceToggle.title = voiceEnabled ? 'Voice responses on — click to mute' : 'Voice responses off — click to enable';
+                if (icon) icon.className = voiceEnabled ? 'fas fa-volume-high' : 'fas fa-volume-xmark';
+                voiceToggle.title = voiceEnabled ? 'Voice on — click to mute' : 'Voice off — click to enable';
                 if (!voiceEnabled) stopSpeaking();
             });
         }
 
-        if (sendBtn) {
-            sendBtn.addEventListener('click', () => submitInput());
-        }
+        if (sendBtn) sendBtn.addEventListener('click', () => submitInput());
 
         if (inputEl) {
             inputEl.addEventListener('keydown', (e) => {
@@ -958,50 +1007,30 @@
             });
         }
 
-        // Suggestion chips
         if (suggestionsEl) {
             suggestionsEl.addEventListener('click', (e) => {
                 const chip = e.target.closest('.leya-chip');
-                if (chip) {
-                    const query = chip.dataset.query;
-                    if (query) submitInput(query);
-                }
+                if (chip && chip.dataset.query) submitInput(chip.dataset.query);
             });
         }
 
-        // Close on outside click (but not on launcher itself)
         document.addEventListener('click', (e) => {
             if (!isOpen) return;
-            if (panel && !panel.contains(e.target) && e.target !== launcher && !launcher.contains(e.target)) {
-                closePanel();
-            }
+            if (panel && !panel.contains(e.target) && !launcher.contains(e.target)) closePanel();
         });
 
-        // Escape to close
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && isOpen) closePanel();
         });
 
-        // Stop mic when LEYA panel closes
-        if (panel) {
-            const obs = new MutationObserver(() => {
-                if (panel.hidden && isListening) stopListening();
-            });
-            obs.observe(panel, { attributes: true, attributeFilter: ['hidden'] });
-        }
+        if (!SpeechRec && micBtn) micBtn.style.display = 'none';
     }
 
     /* ============================================================
-       INIT
+       INITIALIZATION
        ============================================================ */
     function init() {
-        getEls();
         wireEvents();
-
-        // Hide mic button if speech recognition unsupported
-        if (!SpeechRec && micBtn) {
-            micBtn.style.display = 'none';
-        }
     }
 
     if (document.readyState === 'loading') {
